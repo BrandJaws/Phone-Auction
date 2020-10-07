@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Livewire\Pages\Dashboard\Dashboard;
+use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\DeviceModels;
+use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\EditDeviceModel;
+use App\Http\Livewire\Pages\Dashboard\Devices\Devices;
+use App\Http\Livewire\Pages\Dashboard\Devices\EditDevice;
+use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\EditNetworkCarrier;
+use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\NetworkCarriers;
+use App\Http\Livewire\Pages\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +21,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Home::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
+Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/', Dashboard::class);
+
+    Route::prefix('devices')->name('.devices')->group(function () {
+        Route::get('/', Devices::class);
+        Route::get('/{device_id}', EditDevice::class)->name('.edit');
+        Route::get('/{device_id}/models', DeviceModels::class)->name('.models');
+        Route::get('/{device_id}/models/{device_model_id}', EditDeviceModel::class)->name('.models.edit');
+    });
+
+    Route::prefix('network-carriers')->name('.network-carriers')->group(function () {
+        Route::get('/', NetworkCarriers::class);
+        Route::get('/{network_carrier_id}', EditNetworkCarrier::class)->name('.edit');
+    });
+
+});
