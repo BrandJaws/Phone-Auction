@@ -4,5 +4,23 @@
             {{ $title }}
         </h2>
     </x-slot>
-    Devices
+    <div>
+        <a href="{{ route('dashboard.devices.edit', "new") }}">Add</a>
+    </div>
+    <div class="container mx-auto">
+        <table>
+            <th>Device Name</th>
+            <th>Action</th>
+            @foreach ($devices as $device)
+            <tr>
+                <td>{{ $device->name }} </td>
+                <td>
+                    <a href="{{route('dashboard.devices.edit', $device->id)}}"> Edit </a>
+                    <a href="#." wire:click.prevent="delete({{$device->id}})" > Delete </a>
+                </td>
+            </tr>
+            @endforeach
+        </table>
+        {{ $devices->links() }}
+    </div>
 </div>
