@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div>
-        <a href="{{ route('dashboard.devices.edit', "new") }}">Add</a>
+        <a href="{{ route('dashboard.devices.edit', 'new') }}">Add</a>
     </div>
     <div class="container mx-auto">
         <table>
@@ -17,6 +17,7 @@
                 <td>
                     <a href="{{route('dashboard.devices.edit', $device->id)}}"> Edit </a>
                     <a href="#." wire:click.prevent="delete({{$device->id}})" > Delete </a>
+                    <a href="{{route('dashboard.devices.models', $device->id)}}" > Models </a>
                 </td>
             </tr>
             @endforeach
