@@ -66,7 +66,7 @@ class EditDevice extends Component
         // Process image only if exists. It may not have been selected incase it was an edit of existing record
         if($this->image){
             $imageName = strval($device->id).'.'.$this->image->extension();
-            $imageUrl = 'uploads/devices/'.$imageName;
+            $imageUrl = 'storage/uploads/devices/'.$imageName;
             $this->image->storeAs('public/uploads/devices/', $imageName);
             $image = new Image();
             $image->fill([
