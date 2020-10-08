@@ -67,7 +67,7 @@ class EditDevice extends Component
         if($this->image){
             $imageName = strval($device->id).'.'.$this->image->extension();
             $imageUrl = 'uploads/devices/'.$imageName;
-            $this->image->storeAs('uploads/devices/', $imageName);
+            $this->image->storeAs('public/uploads/devices/', $imageName);
             $image = new Image();
             $image->fill([
                 "imageUrl" => $imageUrl,
