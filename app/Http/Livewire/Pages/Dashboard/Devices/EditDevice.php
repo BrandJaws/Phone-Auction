@@ -24,11 +24,13 @@ class EditDevice extends Component
         $this->device_id = null;
         if($device_id !== 'new'){
             $device = Device::find($device_id);
-            if($device){
-                $this->name = $device->name;
-                $this->title = "Edit Device";
-                $this->device_id = $device_id;
+            if(!$device){
+                abort(404);
             }
+            $this->name = $device->name;
+            $this->title = "Edit Device";
+            $this->device_id = $device_id;
+
         }
     }
 
@@ -39,7 +41,7 @@ class EditDevice extends Component
         if($this->device_id){
             $device = Device::find($this->device_id);
             if(!$device){
-                $this->device_id = null;
+                abort(404);
             }
         }
 
