@@ -1,0 +1,102 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.iniScreen {
+    background: url('../assets/images/new-bg.jpg') fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+.brandLogo {
+    max-width: 300px;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.brandLogo img {
+    max-width: 100%;
+}
+
+.themeBtn {
+    background: #b3cd34;
+    color: #fff !important;
+    padding: 15px 25px 14px;
+    border: 1px solid #b3cd34;
+    -webkit-border-radius: 50px;
+    border-radius: 5px;
+    font: 400 16px/1.2 'Raleway', sans-serif;
+    margin-top: 15px;
+}
+
+.themeBtn:hover,
+.themeBtn:focus {
+    background: #606f15;
+    box-shadow: none;
+    outline: none;
+    border-color: #606f15;
+}
+
+.formLabel {
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.formInput {
+    background-color: #f7f7f7;
+    border-color: transparent;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 22px;
+    font-weight: 400;
+    color: #353535;
+    border-radius: 0px;
+}
+
+.forgotPassword a {
+    text-decoration: none;
+    color: #2762a2;
+}
+
+.iniScreen .smBox {
+    padding: 30px 40px;
+    border-radius: 0px;
+}
+
+.hover\:text-themeBlue-900:hover {
+    color: #2762a2;
+}
+
+.iniScreen .min-h-screen {
+    padding: 40px 0px;
+}
+
+
+
+.navbarWrap {
+    background: #2762a2;
+}
+
+.navbarWrap a.brandLink { padding: 0px; }
+
+.navbarWrap .hidden.space-x-8 a {
+    line-height: inherit;
+    padding: 0 20px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    list-style: none;
+    color: #fff;
+    margin: 0px !important;
+}
+
+.navbarWrap {}
+
+.navbarWrap {}
+
+.navbarWrap {}
