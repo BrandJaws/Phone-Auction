@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeviceQuotesTable extends Migration
+class CreateModelQuotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDeviceQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('device_quotes', function (Blueprint $table) {
+        Schema::create('model_quotes', function (Blueprint $table) {
             $table->id();
             $table->integer('device_model_id');
             $table->integer('device_state_id');
@@ -30,6 +30,6 @@ class CreateDeviceQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('device_quotes');
+        Schema::dropIfExists('model_quotes');
     }
 }

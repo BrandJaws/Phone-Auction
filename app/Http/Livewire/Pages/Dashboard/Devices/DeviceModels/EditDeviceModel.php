@@ -22,7 +22,7 @@ class EditDeviceModel extends Component
     public $image;
 
     public function mount($device_id, $device_model_id){
-        $this->title = "New Device";
+        $this->title = "New Device Model";
         $this->device_id = null;
         $this->device_model_id = null;
         $device = Device::find($device_id);
@@ -36,7 +36,7 @@ class EditDeviceModel extends Component
                 abort(404);
             }
             $this->name = $deviceModel->name;
-            $this->title = "Edit Device";
+            $this->title = "Edit Device Model";
             $this->device_model_id = $device_model_id;
         }
     }
