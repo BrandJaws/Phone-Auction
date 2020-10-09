@@ -25,7 +25,7 @@ class DeviceStates extends Component
 
     public function render()
     {
-        $deviceStates = DeviceState::paginate(2);
+        $deviceStates = DeviceState::paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.device-states.device-states')->with(['deviceStates' => $deviceStates]);
     }
 }

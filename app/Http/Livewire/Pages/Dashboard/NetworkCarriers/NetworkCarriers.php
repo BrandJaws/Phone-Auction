@@ -28,7 +28,7 @@ class NetworkCarriers extends Component
 
     public function render()
     {
-        $networkCarriers = NetworkCarrier::paginate(2);
+        $networkCarriers = NetworkCarrier::paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.network-carriers.network-carriers')->with(['networkCarriers' => $networkCarriers]);
     }
 }

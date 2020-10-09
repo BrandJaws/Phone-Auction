@@ -28,7 +28,7 @@ class Devices extends Component
 
     public function render()
     {
-        $devices = Device::paginate(2);
+        $devices = Device::paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.devices.devices')->with(['devices' => $devices]);
     }
 }
