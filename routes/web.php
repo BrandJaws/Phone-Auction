@@ -3,6 +3,8 @@
 use App\Http\Livewire\Pages\Dashboard\Dashboard;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\DeviceModels;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\EditDeviceModel;
+use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\ModelQuotes\EditModelQuote;
+use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\ModelQuotes\ModelQuotes;
 use App\Http\Livewire\Pages\Dashboard\Devices\Devices;
 use App\Http\Livewire\Pages\Dashboard\Devices\EditDevice;
 use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\EditNetworkCarrier;
@@ -32,8 +34,14 @@ Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'veri
     Route::prefix('devices')->name('.devices')->group(function () {
         Route::get('/', Devices::class);
         Route::get('/{device_id}', EditDevice::class)->name('.edit');
-        Route::get('/{device_id}/models', DeviceModels::class)->name('.models');
-        Route::get('/{device_id}/models/{device_model_id}', EditDeviceModel::class)->name('.models.edit');
+        Route::prefix('/{device_id}/models')->name('.models')->group(function () {
+            Route::get('/', DeviceModels::class);
+            Route::get('/{device_model_id}', EditDeviceModel::class)->name('.edit');
+            Route::prefix('/{device_model_id}/quotes')->name('.quotes')->group(function () {
+                Route::get('/', ModelQuotes::class);
+                Route::get('/{model_quote_id}', EditModelQuote::class)->name('.edit');
+            });
+        });
     });
 
     Route::prefix('network-carriers')->name('.network-carriers')->group(function () {

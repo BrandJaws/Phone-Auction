@@ -20,6 +20,7 @@
                 <td>
                     <a href="{{route('dashboard.devices.models.edit', ["device_id" => $device->id, "device_model_id" => $deviceModel->id])}}"> Edit </a>
                     <a href="#." wire:click.prevent="delete({{$deviceModel->id}})" > Delete </a>
+                    <a href="{{route('dashboard.devices.models.quotes', ["device_id" => $device->id, "device_model_id" => $deviceModel->id])}}" > Quotes </a>
                 </td>
             </tr>
             @endforeach

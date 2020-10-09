@@ -16,4 +16,12 @@ class ModelQuote extends Model
         'quote_price',
     ];
 
+    public function device_state(){
+        return $this->belongsTo(DeviceState::class);
+    }
+
+    public function network_carrier(){
+        return $this->belongsTo(NetworkCarrier::class);
+    }
+
 }
