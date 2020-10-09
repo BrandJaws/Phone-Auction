@@ -8,6 +8,8 @@ use App\Http\Livewire\Pages\Dashboard\Devices\EditDevice;
 use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\EditNetworkCarrier;
 use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\NetworkCarriers;
 use App\Http\Livewire\Pages\Home;
+use App\Http\Livewire\Pages\Dashboard\DeviceStates\DeviceStates;
+use App\Http\Livewire\Pages\Dashboard\DeviceStates\EditDeviceState;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,14 @@ Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'veri
     Route::prefix('network-carriers')->name('.network-carriers')->group(function () {
         Route::get('/', NetworkCarriers::class);
         Route::get('/{network_carrier_id}', EditNetworkCarrier::class)->name('.edit');
+
     });
+
+    Route::prefix('device-states')->name('.device-states')->group(function () {
+        Route::get('/', DeviceStates::class);
+        Route::get('/{device_state_id}', EditDeviceState::class)->name('.edit');
+    });
+
+
 
 });

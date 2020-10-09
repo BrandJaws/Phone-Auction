@@ -14,4 +14,8 @@ class DeviceState extends Model
         'features'
     ];
 
+    protected $casts = [
+        'features' => 'array',
+    ];
+
 }
