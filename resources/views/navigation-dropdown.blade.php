@@ -24,6 +24,9 @@
                     <x-jet-nav-link href="{{ route('dashboard.device-states') }}" :active="request()->routeIs('dashboard.device-states')">
                         {{ __('Device States') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('dashboard.sell-orders') }}" :active="request()->routeIs('dashboard.sell-orders')">
+                        {{ __('Sell Orders') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -137,6 +140,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('dashboard.device-states') }}" :active="request()->routeIs('dashboard.device-states')">
                 {{ __('Device States') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('dashboard.sell-orders') }}" :active="request()->routeIs('dashboard.sell-orders')">
+                {{ __('Sell Orders') }}
             </x-jet-responsive-nav-link>
         </div>
 

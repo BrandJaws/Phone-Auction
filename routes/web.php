@@ -12,6 +12,8 @@ use App\Http\Livewire\Pages\Dashboard\NetworkCarriers\NetworkCarriers;
 use App\Http\Livewire\Pages\Home;
 use App\Http\Livewire\Pages\Dashboard\DeviceStates\DeviceStates;
 use App\Http\Livewire\Pages\Dashboard\DeviceStates\EditDeviceState;
+use App\Http\Livewire\Pages\Dashboard\SellOrders\SellOrders;
+use App\Http\Livewire\Pages\Dashboard\SellOrders\ViewSellOrder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,11 @@ Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'veri
     Route::prefix('device-states')->name('.device-states')->group(function () {
         Route::get('/', DeviceStates::class);
         Route::get('/{device_state_id}', EditDeviceState::class)->name('.edit');
+    });
+
+    Route::prefix('sell-orders')->name('.sell-orders')->group(function () {
+        Route::get('/', SellOrders::class);
+        Route::get('/{sell_order_id}', ViewSellOrder::class)->name('.view');
     });
 
 
