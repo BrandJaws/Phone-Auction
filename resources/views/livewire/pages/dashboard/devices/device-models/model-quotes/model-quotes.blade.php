@@ -14,11 +14,13 @@
         <table>
             <th>State</th>
             <th>Carrier</th>
+            <th>Quote Price</th>
             <th>Action</th>
             @foreach ($modelQuotes as $modelQuote)
             <tr>
                 <td>{{ $modelQuote->device_state->condition }} </td>
                 <td>{{ $modelQuote->network_carrier->name }} </td>
+                <td>{{ $modelQuote->quote_price }} </td>
                 <td>
                     <a href="{{route('dashboard.devices.models.quotes.edit', ["device_id" => $device->id, "device_model_id" => $modelQuote->id, "model_quote_id" => $modelQuote->id])}}"> Edit </a>
                     <a href="#." wire:click.prevent="delete({{$modelQuote->id}})" > Delete </a>
