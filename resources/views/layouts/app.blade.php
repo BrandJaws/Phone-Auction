@@ -24,11 +24,18 @@
             @livewire('navigation-dropdown')
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+            <header class="mainHeading">
+                <div class="max-w-7xl mx-auto py-6 sm:py-20 px-4 sm:px-6 lg:px-8 sm:pb-0">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-left">
+                            {{ $header }}
+                        </div>
+                        <div class="text-right">
+                            {{ $headerBtn }}
+                        </div>
+                    </div>
                 </div>
-            </header>
+            </header>   
 
             <!-- Page Content -->
             <main>

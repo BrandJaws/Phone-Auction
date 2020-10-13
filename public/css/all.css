@@ -2,7 +2,6 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-
 .iniScreen {
     background: url('../assets/images/new-bg.jpg') fixed;
     background-position: center center;
@@ -30,8 +29,7 @@ body {
     margin-top: 15px;
 }
 
-.themeBtn:hover,
-.themeBtn:focus {
+.themeBtn:hover, .themeBtn:focus {
     background: #606f15;
     box-shadow: none;
     outline: none;
@@ -76,13 +74,13 @@ body {
     padding: 40px 0px;
 }
 
-
-
 .navbarWrap {
     background: #2762a2;
 }
 
-.navbarWrap a.brandLink { padding: 0px; }
+.navbarWrap a.brandLink {
+    padding: 0px;
+}
 
 .navbarWrap .hidden.space-x-8 a {
     line-height: inherit;
@@ -95,8 +93,25 @@ body {
     margin: 0px !important;
 }
 
-.navbarWrap {}
+.boxPanel {}
 
-.navbarWrap {}
+.btnSmall {
+    padding: 5px 7.5px;
+    margin: 2.5px;
+}
 
-.navbarWrap {}
+.panelHeading {
+    position: relative;
+}
+
+.panelHeading:after {
+    position: absolute;
+    left: 0px;
+    content: "";
+    bottom: -10px;
+    width: 10%;
+    height: 2.5px;
+    background: #3f83f8;
+}
+.withBtn { width: calc(100% - 55px); }
+
