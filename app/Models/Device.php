@@ -18,5 +18,10 @@ class Device extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function models()
+    {
+        return $this->hasMany(DeviceModel::class);
+    }
+
 
 }

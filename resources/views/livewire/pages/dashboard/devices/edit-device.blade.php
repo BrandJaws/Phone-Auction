@@ -16,7 +16,7 @@
                 </h2>
             </div>
             <form method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" wire:submit.prevent="save" >
-                
+
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
@@ -30,6 +30,7 @@
                     {{ __('Image') }}
                     </label>
                     <input id="image" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="file" wire:model="image"/>
+                    <div wire:loading wire:target="image">Uploading...</div>
                     @error('image') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
             </div>

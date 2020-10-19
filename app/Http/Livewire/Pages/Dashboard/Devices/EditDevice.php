@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Pages\Dashboard\Devices;
 
 use App\Models\Device;
 use App\Models\Image;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -67,7 +69,10 @@ class EditDevice extends Component
 
         // Process image only if exists. It may not have been selected incase it was an edit of existing record
         if($this->image){
-            $imageName = strval($device->id).'.'.$this->image->extension();
+            $existingImages = Image::where("imageable_type", Device::class)
+                                    ->where("imageable_id", $device->id)
+                                    ->get();
+            $imageName = Carbon::now()->toDateTimeString().'.'.$this->image->extension();
             $imageUrl = 'storage/uploads/devices/'.$imageName;
             $this->image->storeAs('public/uploads/devices/', $imageName);
             $image = new Image();
@@ -76,6 +81,11 @@ class EditDevice extends Component
                 "imageable_type" => Device::class,
                 "imageable_id" => $device->id,
             ])->save();
+            foreach($existingImages as $image){
+                $path = str_replace('storage/',"",$image->imageUrl);
+                Storage::disk('public')->delete($path);
+                $image->delete();
+            }
         }
 
         return redirect()->route('dashboard.devices');

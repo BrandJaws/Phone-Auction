@@ -18,4 +18,9 @@ class DeviceModel extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public function quotes()
+    {
+        return $this->hasMany(ModelQuote::class);
+    }
 }

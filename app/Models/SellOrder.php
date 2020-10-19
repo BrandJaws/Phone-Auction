@@ -10,7 +10,8 @@ class SellOrder extends Model
     use HasFactory;
     protected $fillable = [
         'model_quote_id',
-        'name',
+        'firstName',
+        'lastName',
         'email',
         'address',
         'city',
@@ -20,5 +21,6 @@ class SellOrder extends Model
         'onlyShippingLabel',
         'paymentMethod',
         'paymentEmail',
+        'promoCode',
     ];
 }

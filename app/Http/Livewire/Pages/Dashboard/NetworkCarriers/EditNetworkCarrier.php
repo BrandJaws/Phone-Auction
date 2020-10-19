@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Pages\Dashboard\NetworkCarriers;
 
 use App\Models\NetworkCarrier;
 use App\Models\Image;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -67,7 +69,10 @@ class EditNetworkCarrier extends Component
 
         // Process image only if exists. It may not have been selected incase it was an edit of existing record
         if($this->image){
-            $imageName = strval($networkCarrier->id).'.'.$this->image->extension();
+            $existingImages = Image::where("imageable_type", NetworkCarrier::class)
+                                    ->where("imageable_id", $networkCarrier->id)
+                                    ->get();
+            $imageName = Carbon::now()->toDateTimeString().'.'.$this->image->extension();
             $imageUrl = 'storage/uploads/network-carriers/'.$imageName;
             $this->image->storeAs('public/uploads/network-carriers/', $imageName);
             $image = new Image();
@@ -76,6 +81,11 @@ class EditNetworkCarrier extends Component
                 "imageable_type" => NetworkCarrier::class,
                 "imageable_id" => $networkCarrier->id,
             ])->save();
+            foreach($existingImages as $image){
+                $path = str_replace('storage/',"",$image->imageUrl);
+                Storage::disk('public')->delete($path);
+                $image->delete();
+            }
         }
 
         return redirect()->route('dashboard.network-carriers');
