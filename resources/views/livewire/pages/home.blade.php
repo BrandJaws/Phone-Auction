@@ -1,3 +1,8 @@
+<div class="loaderWrap" style="display:none;">
+    <div class="loaderBox">
+        <img src="{{asset('assets/images/loader.gif')}}">
+    </div>
+</div>
 <div class="bg-white">
     <nav class="flex items-center justify-between flex-wrap bg-blue-theme px-6 py-3">
         <div class="homeHeaderLogo">

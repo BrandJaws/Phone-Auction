@@ -3,6 +3,19 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.loaderWrap {
+    background: #fff;
+    position: fixed;
+    z-index: 999999;
+    text-align: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+}
+
 .iniScreen {
     background: url('../assets/images/new-bg.jpg') fixed;
     background-position: center center;
