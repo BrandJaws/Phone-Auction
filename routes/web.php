@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Home::class);
+Route::get('/', Home::class)->name('home');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
 Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function () {

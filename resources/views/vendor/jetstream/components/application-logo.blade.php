@@ -1,3 +1,3 @@
-<a href="/" class="brandLink">
+<a href="{{ route('home') }}" class="brandLink">
     <img src="{{asset('assets/images/logo-white.png')}}" {{ $attributes }}>
 </a>
