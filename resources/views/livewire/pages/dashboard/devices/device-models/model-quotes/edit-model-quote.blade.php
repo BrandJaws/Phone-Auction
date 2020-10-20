@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight adminHeading">
             {{ $title }}
         </h1>
     </x-slot>

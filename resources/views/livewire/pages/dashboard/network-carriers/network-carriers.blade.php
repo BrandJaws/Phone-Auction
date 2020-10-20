@@ -1,11 +1,11 @@
 <div>
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight adminHeading">
             {{ $title }}
         </h1>
     </x-slot>
     <x-slot name="headerBtn">
-        <a  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+        <a  class="text-white font-bold py-2 px-4 rounded btnAdminTheme" 
             href="{{ route('dashboard.network-carriers.edit', 'new') }}">Add New Network Carriers</a>
     </x-slot>
 

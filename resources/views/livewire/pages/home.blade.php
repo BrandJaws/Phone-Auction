@@ -11,41 +11,41 @@
             </button>
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto  homeHeaderNav">
-            <div class="text-sm lg:flex-grow flex items-center justify-center">
+            <div class="text-sm lg:flex-grow flex items-center justify-end">
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    About
+                    About Us
                 </a>
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    How it Works
+                    Repair
                 </a>
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    Sell
+                    Phones
                 </a>
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    Buy
+                    News
                 </a>
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    Sell in Bulk
+                    Warranty
                 </a>
                 <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
-                    Contact
+                    Directions / Contact Us
                 </a>
             </div>
-        </div>
-        <div class="homeHeaderBtn">
-            <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Track My Offer</a>
+            <a href="#" class="headerBtn inline-block text-sm px-4 mx-6 py-2 leading-none border text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Track My Offer</a>
         </div>
     </nav>
+    
     <section>
         <div class="container mx-auto py-12">
             <div class="grid grid-cols-1 gap-4 text-center pb-10">
                 <div class="mainHeading">
-                    <h1><span class="text-blue-500 mr-2">1.</span> START BY SELECTING YOUR DEVICE BELOW:</h1>
+                    <h1><span class="text-parrot-100 mr-2">1.</span> START BY SELECTING YOUR DEVICE BELOW:</h1>
                 </div>
             </div>
-            <div class="grid grid-cols-8 gap-4">
+            <div class="gap-4">
+                <div class="flex flex-wrap items-center justify-center deviceBoxWrap">
                 @foreach($devices as $device)
-                    <div>
+                    <div class="w-2/12">
                         <a href="#." class="deviceBox text-center"  wire:click.prevent="selectDevice({{$device->id}})">
                             <div class="img-fluid">
                                 <img src="{{$device->image->imageUrl}}" alt="Device" />
@@ -56,6 +56,7 @@
                         </a>
                     </div>
                 @endforeach
+                </div>
             </div>
         </div>
     </section>
@@ -68,22 +69,24 @@
                     <span class="subtitleTop">
                         {{ $sellOrderItems[$selectedOrderIndex]["selectedDevice"]["name"] }} / Select your model
                     </span>
-                    <h1><span class="text-blue-500 mr-2">2.</span>SELECT YOUR MODEL:</h1>
+                    <h1><span class="text-parrot-100 mr-2">2.</span>SELECT YOUR MODEL:</h1>
                 </div>
             </div>
-            <div class="grid grid-cols-8 gap-4">
-                @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
-                <div>
-                    <a href="#." class="deviceBox text-center" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
-                        <div class="img-fluid">
-                            <img src="{{$model["image"]["imageUrl"]}}" alt="Device" />
+            <div class="gap-4">
+                <div class="flex flex-wrap items-center justify-center">
+                    @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
+                        <div class="w-2/12">
+                            <a href="#." class="deviceBox text-center" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
+                                <div class="img-fluid">
+                                    <img src="{{$model["image"]["imageUrl"]}}" alt="Device" />
+                                </div>
+                                <div class="imgCaption mt-3">
+                                    <p>{{ $model["name"] }}</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="imgCaption mt-3">
-                            <p>{{ $model["name"] }}</p>
-                        </div>
-                    </a>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
@@ -97,19 +100,21 @@
                     <span class="subtitleTop">
                         {{ $sellOrderItems[$selectedOrderIndex]["selectedDevice"]["name"] }} / {{ $sellOrderItems[$selectedOrderIndex]["selectedDeviceModel"]["name"] }} / Select your carrier
                     </span>
-                    <h1><span class="text-blue-500 mr-2">3.</span>SELECT YOUR NETWORK CARRIER:</h1>
+                    <h1><span class="text-parrot-100 mr-2">3.</span>SELECT YOUR NETWORK CARRIER:</h1>
                 </div>
             </div>
-            <div class="grid grid-cols-4 gap-4">
-                @foreach($this->networkCarriers as $carrier)
-                <div>
-                    <a href="#." class="carrierBox text-center" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
-                        <div class="img-fluid">
-                            <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
-                        </div>
-                    </a>
+            <div class="gap-4">
+                <div class="flex flex-wrap items-center justify-center">
+                    @foreach($this->networkCarriers as $carrier)
+                    <div class="w-3/12">
+                        <a href="#." class="carrierBox text-center" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
+                            <div class="img-fluid">
+                                <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
                 </div>
-               @endforeach
             </div>
         </div>
     </section>
@@ -120,7 +125,7 @@
         <div class="container mx-auto py-12">
             <div class="grid grid-cols-1 gap-4 text-center pb-16">
                 <div class="mainHeading">
-                    <h1><span class="text-blue-500 mr-2">3.</span>STATE OF YOUR DEVICE:</h1>
+                    <h1><span class="text-parrot-100 mr-2">4.</span>STATE OF YOUR DEVICE:</h1>
                 </div>
             </div>
             <div class="flex flex-wrap">
@@ -160,6 +165,11 @@
                                         <a href="#." class="btnTheme">
                                             Enter a promo code*
                                         </a>
+
+
+
+
+
                                         <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
                                     </div>
                                 </div>
@@ -317,12 +327,11 @@
 
 
                         <div class="flex items-center">
-                            <div class="w-full text-right">
-                            <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme btnThemeFill" type="button">
+                            <div class="w-full text-right flex justify-between items-center">
+                            <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
                                 Modify Order
                             </button>
-                            <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme btnThemeFill" type="submit" value="Submit" />
-
+                            <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="submit" value="Submit" />
                             </div>
                         </div>
 

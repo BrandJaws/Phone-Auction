@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight adminHeading">
             {{ $title }}
         </h1>
     </x-slot>
@@ -22,10 +22,10 @@
                         @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="w-full md:w-1/2 px-3">
+                    <div class="w-full md:w-1/2 px-3 relative">
                         <label for="image" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('Image') }}</label>
-                        <input id="image" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="file" wire:model="image"/>
-                        <div wire:loading wire:target="image">Uploading...</div>
+                        <input id="image" class="appearance-none block w-full imgUploader bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="file" wire:model="image"/>
+                        <div wire:loading wire:target="image" class="imgLoader"><img src="{{asset('assets/images/loader.gif')}}"></div>
                         @error('image') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>

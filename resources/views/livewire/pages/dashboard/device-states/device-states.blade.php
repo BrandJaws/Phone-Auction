@@ -1,12 +1,12 @@
 <div>
 
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight adminHeading">
             {{ $title }}
         </h2>
     </x-slot>
     <x-slot name="headerBtn">
-        <a  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  href="{{ route('dashboard.device-states.edit', 'new') }}">Add New State</a>
+        <a  class="text-white font-bold py-2 px-4 rounded btnAdminTheme"  href="{{ route('dashboard.device-states.edit', 'new') }}">Add New State</a>
     </x-slot>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:pb-0">

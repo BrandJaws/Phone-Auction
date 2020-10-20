@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="font-semibold text-3xl text-gray-800 leading-tight">
+        <h1 class="font-semibold text-3xl text-gray-800 leading-tight adminHeading">
             {{ $title }}
         </h1>
     </x-slot>
@@ -25,12 +25,12 @@
                     <input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" required autofocus autocomplete="name" wire:model="name"/>
                     @error('name') <span class="error  error text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
-                <div class="w-full md:w-1/2 px-3">
+                <div class="w-full md:w-1/2 px-3 relative">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="networkCarrier" >
                     {{ __('Image') }}
                     </label>
-                    <input id="image" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="file" wire:model="image"/>
-                    <div wire:loading wire:target="image">Uploading...</div>
+                    <input id="image" class="appearance-none imgUploader block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="file" wire:model="image"/>
+                    <div wire:loading wire:target="image" class="imgLoader"><img src="{{asset('assets/images/loader.gif')}}"></div>
                     @error('image') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
             </div>
