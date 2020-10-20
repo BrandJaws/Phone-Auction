@@ -17,11 +17,12 @@ class Home extends Component
 
     public $devices;
     public $networkCarriers;
-    public $selectedDevice;
-    public $selectedDeviceModel;
-    public $selectedNetworkCarrier;
-    public $modelQuotes;
-    public $selectedQuote;
+    public $formVisible = false;
+    // public $selectedDevice;
+    // public $selectedDeviceModel;
+    // public $selectedNetworkCarrier;
+    // public $modelQuotes;
+    // public $selectedQuote;
 
 
     // Form binding fields
@@ -41,8 +42,8 @@ class Home extends Component
 
     public function getBlankSellOrderItem(){
         return [
-            "devices" => null,
-            "networkCarriers" => null,
+            // "devices" => null,
+            // "networkCarriers" => null,
             "selectedDevice" => null,
             "selectedDeviceModel" => null,
             "selectedNetworkCarrier" => null,
@@ -61,18 +62,32 @@ class Home extends Component
     }
 
     public function selectDevice($deviceId){
-        $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id',$deviceId)
-                                      ->with('models.image')
-                                      ->first()->toArray();
+        $this->formVisible = false;
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"] = null;
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = null;
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = null;
+
+
+        $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id',$deviceId)
+                                      ->with('models.image')
+                                      ->first()->toArray();
+
     }
 
     public function selectDeviceModel($deviceModelId){
-        $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"] = DeviceModel::where('id',$deviceModelId)
+        $this->formVisible = false;
+        $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = null;
+        $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = null;
+
+        $deviceModel = DeviceModel::where('id',$deviceModelId)
                                       ->with('quotes.device_state')
-                                      ->first()->toArray();
+                                      ->first();
+        foreach($deviceModel->quotes as $quote){
+            $quotePriceComponents = explode(".", $quote->quote_price);
+            $quote->quote_price_whole = $quotePriceComponents[0];
+            $quote->quote_price_decimal = $quotePriceComponents[1];
+        }
+        $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"] = $deviceModel->toArray();
         if(count($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"]) > 0){
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"][0];
         }
@@ -80,6 +95,10 @@ class Home extends Component
     }
 
     public function selectNetworkCarrier($networkCarrierId){
+        // $this->formVisible = false;
+        // if(count($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"]) > 0){
+        //     $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"][0];
+        // }
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = $this->networkCarriers->where('id',$networkCarrierId)->first();
     }
 
@@ -88,7 +107,18 @@ class Home extends Component
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"])->where('id',$quoteId)->first();
     }
 
+    public function addAnotherDevice(){
+        $this->formVisible = false;
+        $this->sellOrderItems[] = $this->getBlankSellOrderItem();
+        $this->selectedOrderIndex++;
+    }
+
+    public function displayForm(){
+        $this->formVisible = true;
+    }
+
     public function save(){
+        dd($this->sellOrderItems);
         dd($this->firstName,
         $this->model_quote_id,
         $this->firstName,

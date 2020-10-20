@@ -66,7 +66,7 @@
             <div class="grid grid-cols-1 gap-4 text-center pb-4">
                 <div class="mainHeading">
                     <span class="subtitleTop">
-                        {{ $sellOrderItems[$selectedOrderIndex]["selectedDevice"]["name"] }} / Select your device
+                        {{ $sellOrderItems[$selectedOrderIndex]["selectedDevice"]["name"] }} / Select your model
                     </span>
                     <h1><span class="text-blue-500 mr-2">2.</span>SELECT YOUR MODEL:</h1>
                 </div>
@@ -136,7 +136,7 @@
                     <div class="tabBody p-6 relative h-full col-span-9">
                         <div class="tabContent">
                             <span class="subtitleTop">
-                                iPhone / iPhone 5 (All GB) / Select your carrier
+                                {{ $sellOrderItems[$selectedOrderIndex]["selectedDevice"]["name"] }} / {{ $sellOrderItems[$selectedOrderIndex]["selectedDeviceModel"]["name"] }} / {{ $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"]["name"] }}
                             </span>
                             <div class="tabDescription flex">
                                 <ul>
@@ -147,13 +147,15 @@
                                     @endif
                                 </ul>
                                 <div class="tabRightBox">
-                                    <div class="price">
-                                        <span class="currency">$</span>
-                                        <span class="amount">{{
-                                            $sellOrderItems[$selectedOrderIndex]["selectedQuote"] ? explode(".", $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["quote_price"])[0] : 0
-                                        }}</span>
-                                        <span class="decimalPoint">.{{ explode(".", $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["quote_price"])[1] }}</span>
-                                    </div>
+                                    @if($sellOrderItems[$selectedOrderIndex]["selectedQuote"])
+                                        <div class="price">
+                                            <span class="currency">$</span>
+                                            <span class="amount">{{
+                                                $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["quote_price_whole"]
+                                            }}</span>
+                                            <span class="decimalPoint">.{{ $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["quote_price_decimal"] }}</span>
+                                        </div>
+                                    @endif
                                     <div class="info">
                                         <a href="#." class="btnTheme">
                                             Enter a promo code*
@@ -168,10 +170,10 @@
             </div>
             <div class="grid grid-flow-col">
                 <div class="buttons">
-                    <a href="#." class="btnTheme">
+                    <a href="#." class="btnTheme" wire:click.prevent="addAnotherDevice" >
                         Accept & add another device
                     </a>
-                    <a href="#." class="btnTheme btnThemeFill">
+                    <a href="#." class="btnTheme btnThemeFill" wire:click="displayForm">
                         Get Paid
                     </a>
                 </div>
@@ -180,7 +182,7 @@
     </section>
     @endif
 
-    @if($sellOrderItems[$selectedOrderIndex]["selectedQuote"])
+    @if($sellOrderItems[$selectedOrderIndex]["selectedQuote"] && $formVisible)
     <!--  -->
     <section class="bg-blue-500 block">
         <div class="container mx-auto py-12">
