@@ -22,12 +22,12 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="deviceState">
                         {{ __('Device State') }}
                         </label>
-                        <select 
+                        <select
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             name="deviceState" wire:model="device_state_id">
                                 <option value="">Select a device state</option>
                                 @foreach ($deviceStates as $deviceState)
-                                    <option value="{{ $deviceState->id }}" {{  $device_state_id === $deviceState->id ? 'selected' : '' }}>{{ $deviceState->condition }}</option>
+                                    <option value="{{ $deviceState->id }}" >{{ $deviceState->condition }}</option>
                                 @endforeach
                             </select>
                             @error('device_state_id') <span class="error error text-red-500 text-xs">{{ $message }}</span> @enderror
@@ -36,12 +36,12 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="networkCarrier" >
                             {{ __('Network Carrier') }}
                         </label>
-                        <select 
+                        <select
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                         name="networkCarrier" wire:model="network_carrier_id">
-                            <option value="">Select a network carrier</option>
+                            <option value="0">Select a network carrier</option>
                             @foreach ($networkCarriers as $networkCarrier)
-                                <option data-test="{{ $network_carrier_id .'-' .$networkCarrier->id  }}" value="{{ $networkCarrier->id }}" {{ $network_carrier_id === $networkCarrier->id ? 'selected' : '' }}>{{ $networkCarrier->name }}</option>
+                                <option value="{{ $networkCarrier->id }}" >{{ $networkCarrier->name }}</option>
                             @endforeach
                         </select>
                         @error('network_carrier_id') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
