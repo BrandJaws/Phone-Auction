@@ -1,5 +1,5 @@
 <div>
-    <div class="loaderWrap" style="display:none;">
+    <div class="loaderWrap" wire:loading >
         <div class="loaderBox">
             <img src="{{asset('assets/images/loader.gif')}}">
         </div>
