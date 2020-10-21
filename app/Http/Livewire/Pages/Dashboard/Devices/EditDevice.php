@@ -52,6 +52,8 @@ class EditDevice extends Component
         ];
         // Add image validation only if new record
         if(!$this->device_id){
+            $rules['image'] = 'required|image|max:1024';
+        }else if($this->image){
             $rules['image'] = 'image|max:1024';
         }
         $this->validate($rules);

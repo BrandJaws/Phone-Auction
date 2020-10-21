@@ -51,9 +51,13 @@ class EditNetworkCarrier extends Component
             'name' => 'required||max:255',
         ];
         // Add image validation only if new record
+        // Add image validation only if new record
         if(!$this->network_carrier_id){
+            $rules['image'] = 'required|image|max:1024';
+        }else if($this->image){
             $rules['image'] = 'image|max:1024';
         }
+
         $this->validate($rules);
 
         // Create new instance if not found one

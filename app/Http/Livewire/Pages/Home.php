@@ -14,16 +14,9 @@ class Home extends Component
     public $sellOrderItems;
     public $selectedOrderIndex;
 
-
     public $devices;
     public $networkCarriers;
     public $formVisible = false;
-    // public $selectedDevice;
-    // public $selectedDeviceModel;
-    // public $selectedNetworkCarrier;
-    // public $modelQuotes;
-    // public $selectedQuote;
-
 
     // Form binding fields
     public $model_quote_id = "";
