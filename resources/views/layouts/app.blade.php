@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-            </header>   
+            </header>
 
             <!-- Page Content -->
             <main>

@@ -71,6 +71,7 @@ class Home extends Component
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id',$deviceId)
                                       ->with('models.image')
                                       ->first()->toArray();
+        $this->emit('scrollToSection', 'modelSelectionSection');
 
     }
 
@@ -91,6 +92,7 @@ class Home extends Component
         if(count($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"]) > 0){
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"][0];
         }
+        $this->emit('scrollToSection', 'networkSelectionSection');
 
     }
 
@@ -100,21 +102,25 @@ class Home extends Component
         //     $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"][0];
         // }
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = $this->networkCarriers->where('id',$networkCarrierId)->first();
+        $this->emit('scrollToSection', 'quoteSelectionSection');
     }
 
     public function selectQuote($quoteId){
         // dd($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]->quotes);
         $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"])->where('id',$quoteId)->first();
+        $this->emit('scrollToSection', 'requestFormSection');
     }
 
     public function addAnotherDevice(){
         $this->formVisible = false;
         $this->sellOrderItems[] = $this->getBlankSellOrderItem();
         $this->selectedOrderIndex++;
+        $this->emit('scrollToSection', 'deviceSelectionSection');
     }
 
     public function displayForm(){
         $this->formVisible = true;
+        $this->emit('scrollToSection', 'requestFormSection');
     }
 
     public function save(){

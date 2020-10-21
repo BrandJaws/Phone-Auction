@@ -41,7 +41,7 @@
             </div>
         </nav>
 
-        <section>
+        <section id="deviceSelectionSection">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-10">
                     <div class="mainHeading">
@@ -68,7 +68,7 @@
         </section>
         <!--  -->
         @if($sellOrderItems[$selectedOrderIndex]["selectedDevice"])
-        <section class="bg-gray-100 block">
+        <section class="bg-gray-100 block" id="modelSelectionSection">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-4">
                     <div class="mainHeading">
@@ -81,8 +81,8 @@
                 <div class="gap-4">
                     <div class="flex flex-wrap items-center justify-center">
                         @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
-                            <div class="w-2/12">
-                                <a href="#." class="deviceBox text-center" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
+                            <div class="w-2/12 singleDeviceModel"  wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
+                                <a href="#." class="deviceBox text-center" >
                                     <div class="img-fluid">
                                         <img src="{{$model["image"]["imageUrl"]}}" alt="Device" />
                                     </div>
@@ -99,7 +99,7 @@
         @endif
         <!--  -->
         @if($sellOrderItems[$selectedOrderIndex]["selectedDeviceModel"])
-        <section class="bg-white block">
+        <section class="bg-white block" id="networkSelectionSection" onload="onNetworkSelectionLoader()">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-4">
                     <div class="mainHeading">
@@ -112,8 +112,8 @@
                 <div class="gap-4">
                     <div class="flex flex-wrap items-center justify-center">
                         @foreach($this->networkCarriers as $carrier)
-                        <div class="w-3/12">
-                            <a href="#." class="carrierBox text-center" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
+                        <div class="w-3/12 networkCarrier" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
+                            <a href="#." class="carrierBox text-center" >
                                 <div class="img-fluid">
                                     <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
                                 </div>
@@ -127,7 +127,7 @@
         @endif
 
         @if($sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"])
-        <section class="bg-gray-100 block">
+        <section class="bg-gray-100 block" id="quoteSelectionSection">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-16">
                     <div class="mainHeading">
@@ -200,7 +200,7 @@
 
         @if($sellOrderItems[$selectedOrderIndex]["selectedQuote"] && $formVisible)
         <!--  -->
-        <section class="bg-blue-500 block">
+        <section class="bg-blue-500 block" id="requestFormSection">
             <div class="container mx-auto py-12">
                 <div class="flex flex-wrap">
                     <div class="w-7/12">
@@ -380,4 +380,18 @@
 
 
     </div>
+
+    <script>
+        window.livewire.on('scrollToSection',function(sectionId){
+            scrollToElement(sectionId);
+        })
+
+        function scrollToElement(elementId){
+            var element = document.getElementById(elementId);
+            if(element){
+                element.scrollIntoView();
+            }
+        }
+    </script>
+
 </div>
