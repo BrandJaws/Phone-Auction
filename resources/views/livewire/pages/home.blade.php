@@ -46,7 +46,6 @@
                     <div class="grid grid-cols-1 gap-4 text-center">
                         @foreach($sellOrderItems as $index => $sellOrder)
                             @if($sellOrder["completed"])
-                                <div wire:key="{{ $sellOrder["number"] }}">
                                     <div class="mainHeading" wire:key="{{ $sellOrder["number"] }}">
                                         <h1 class="text-parrot-100 text-xl float-left">
                                             {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
@@ -59,7 +58,6 @@
                                     <div class="flex flex-wrap mb-6" wire:key="{{ $sellOrder["number"] }}">
                                         <input wire:key="{{ $sellOrder["number"] }}" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
                                     </div>
-                                </div>
                             @endif
                         @endforeach
                         <div class="flex items-center gap-6">
@@ -432,22 +430,6 @@
                 });
             }
         }
-
-        // const links = document.querySelectorAll(".homeHeaderNav a");
-        // for (const link of links) {
-        //     link.addEventListener("click", clickHandler);
-        // }
-
-        // function clickHandler(e) {
-        // e.preventDefault();
-        // const href = this.getAttribute("href");
-        // const offsetTop = document.querySelector(href).offsetTop;
-
-        // scroll({
-        //     top: offsetTop,
-        //     behavior: "smooth"
-        // });
-        // }
 
 
     </script>
