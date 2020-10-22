@@ -69,7 +69,7 @@ body {
     transition: all .2s ease-in-out;
 }
 
-#addAnotherDevice {
+.addAnotherDeviceWrap {
     background: #124984;
 }
 
@@ -151,8 +151,6 @@ input {
     color: #fff;
     margin: 0px !important;
 }
-
-.boxPanel {}
 
 .btnSmall {
     padding: 5px 7.5px;
@@ -295,6 +293,16 @@ input {
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+.carrierBox .img-fluid {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+}
+
+.carrierBox .img-fluid img {
+    max-height: 100%;
 }
 
 .carrierBox:hover, .carrierBox.active {
@@ -575,4 +583,116 @@ input {
 
 .bottomSidebar * {
     color: #fff !important;
+}
+
+.bottomSidebar {}
+
+.promoBox {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 280px;
+}
+
+.promoBox .promoInput {
+    border: 1px solid #b3cd34;
+    font-size: 20px;
+    text-align: center;
+    margin: 30px auto;
+    color: #444444 !important;
+}
+
+@media (max-width:1024px) {
+    .mainHeading {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .subtitleTop {
+        font-size: 14px;
+    }
+    .tabButtons a.tabBtn {
+        font-size: 14px;
+        padding-left: 30px;
+    }
+    .tabBody ul {
+        min-width: inherit;
+    }
+    .tabDescription {
+        width: 100%;
+        display: inline-block;
+    }
+    .tabRightBox {
+        margin-left: 0px;
+        border: 0px;
+        border-top: 1px solid #f4f5f7;
+        margin-top: 30px;
+    }
+    .tabRightBox .price .amount {
+        font-size: 60px;
+        ;
+    }
+    .tabBody .subtitleTop {
+        max-width: 65%;
+    }
+    .promoBox .promoInput {
+        font-size: 14px;
+        ;
+    }
+    .homeHeaderNav a {
+        padding: 7.5px 7.5px;
+        font-size: 14px;
+    }
+    .homeHeaderNav {
+        text-align: center;
+    }
+    .homeHeaderNav .justify-end {
+        justify-content: center;
+    }
+}
+
+@media (max-width:640px) {
+    .mainHeading {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .subtitleTop {
+        font-size: 14px;
+    }
+    .tabButtons a.tabBtn {
+        font-size: 14px;
+        padding-left: 30px;
+    }
+    .tabBody ul {
+        min-width: inherit;
+    }
+    .tabDescription {
+        width: 100%;
+        display: inline-block;
+    }
+    .tabRightBox {
+        margin-left: 0px;
+        border: 0px;
+        border-top: 1px solid #f4f5f7;
+        margin-top: 30px;
+    }
+    .tabRightBox .price .amount {
+        font-size: 60px;
+        ;
+    }
+    .tabBody .subtitleTop {
+        max-width: 65%;
+    }
+    .promoBox .promoInput {
+        font-size: 14px;
+        ;
+    }
+    .homeHeaderNav a {
+        padding: 7.5px 7.5px;
+        font-size: 14px;
+    }
+    .homeHeaderNav {
+        text-align: center;
+    }
+    .homeHeaderNav .justify-end {
+        justify-content: center;
+    }
 }

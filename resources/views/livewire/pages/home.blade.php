@@ -18,46 +18,46 @@
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto  homeHeaderNav">
                 <div class="text-sm lg:flex-grow flex items-center justify-end">
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/about-us/" class="block mt-4 lg:inline-block lg:mt-0">
                         About Us
                     </a>
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/mobile-phone-repair/" class="block mt-4 lg:inline-block lg:mt-0">
                         Repair
                     </a>
-                    <a href="#modelSelectionSection" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/buy-a-phone/" class="block mt-4 lg:inline-block lg:mt-0">
                         Phones
                     </a>
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/news/" class="block mt-4 lg:inline-block lg:mt-0">
                         News
                     </a>
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/warranty/" class="block mt-4 lg:inline-block lg:mt-0">
                         Warranty
                     </a>
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobijacks.com/contact/" class="block mt-4 lg:inline-block lg:mt-0">
                         Directions / Contact Us
                     </a>
                 </div>
-                <a href="#" class="headerBtn inline-block text-sm px-4 mx-6 py-2 leading-none border text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Track My Offer</a>
             </div>
         </nav>
         <section id="addAnotherDevice">
-            <div class="container mx-auto py-12">
-                @if(count($completedSellOrderItems) > 0)
+            @if(count($completedSellOrderItems) > 0)
+            <div class="addAnotherDeviceWrap">
+                <div class="container mx-auto py-12">
                     <div class="grid grid-cols-1 gap-4 text-center">
                         @foreach($sellOrderItems as $index => $sellOrder)
                             @if($sellOrder["completed"])
-                                    <div class="mainHeading" wire:key="{{ $sellOrder["number"] }}">
-                                        <h1 class="text-parrot-100 text-xl float-left">
-                                            {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
-                                        </h1>
-                                        <a href="#." class="closeBtn">
-                                        <svg wire:key="{{ $sellOrder["number"] }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
-                                        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
-                                        </a>
-                                    </div>
-                                    <div class="flex flex-wrap mb-6" wire:key="{{ $sellOrder["number"] }}">
-                                        <input wire:key="{{ $sellOrder["number"] }}" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
-                                    </div>
+                                <div class="mainHeading" wire:key="{{ $sellOrder["number"] }}">
+                                    <h1 class="text-parrot-100 text-xl float-left">
+                                        {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
+                                    </h1>
+                                    <a href="#." class="closeBtn">
+                                    <svg wire:key="{{ $sellOrder["number"] }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
+                                    id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
+                                    </a>
+                                </div>
+                                <div class="flex flex-wrap mb-6" wire:key="{{ $sellOrder["number"] }}">
+                                    <input wire:key="{{ $sellOrder["number"] }}" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
+                                </div>
                             @endif
                         @endforeach
                         <div class="flex items-center gap-6">
@@ -72,8 +72,9 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
             </div>
+            @endif
         </section>
         <section id="deviceSelectionSection">
             <div class="container mx-auto py-12">
@@ -85,7 +86,7 @@
                 <div class="gap-4">
                     <div class="flex flex-wrap items-center justify-center deviceBoxWrap">
                     @foreach($devices as $device)
-                        <div class="w-2/12">
+                        <div class="w-full sm:w-6/12 md:w-5/12 lg:w-3/12">
                             <a href="#." class="deviceBox text-center"  wire:click.prevent="selectDevice({{$device->id}})">
                                 <div class="img-fluid">
                                     <img src="{{$device->image->imageUrl}}" alt="Device" />
@@ -115,7 +116,7 @@
                 <div class="gap-4">
                     <div class="flex flex-wrap items-center justify-center">
                         @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
-                            <div class="w-2/12 singleDeviceModel"  wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
+                            <div class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
                                 <a href="#." class="deviceBox text-center" >
                                     <div class="img-fluid">
                                         <img src="{{$model["image"]["imageUrl"]}}" alt="Device" />
@@ -146,7 +147,7 @@
                 <div class="gap-4">
                     <div class="flex flex-wrap items-center justify-center">
                         @foreach($this->networkCarriers as $carrier)
-                        <div class="w-3/12 networkCarrier" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
+                        <div class="w-full sm:w-6/12 md:w-5/12 lg:w-3/12 networkCarrier" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
                         <a href="#." class="carrierBox text-center {{ $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"] && $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"]["id"] === $carrier->id ? 'active' : '' }}" >
                                 <div class="img-fluid">
                                     <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
@@ -202,14 +203,9 @@
                                             </div>
                                         @endif
                                         <div class="info">
-                                            <a href="#." class="btnTheme">
-                                                Enter a promo code*
-                                            </a>
-
-
-
-
-
+                                            <div class="promoBox">
+                                                <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                            </div>
                                             <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
                                         </div>
                                     </div>
@@ -241,9 +237,7 @@
                         <div class="mainHeading text-left py-8 pt-0">
                             <h1 class="text-white">FILL OUT YOUR ADDRESS INFORMATION TO RECEIVE YOUR FREE SHIPPING KIT!</h1>
                         </div>
-
                         <form class="w-full pr-6" wire:submit.prevent="save" method="POST">
-
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="first-name">
@@ -395,9 +389,9 @@
                                             <span class="decimalPoint">.00</span>
                                         </div>
                                         <div class="info">
-                                            <a href="#." class="btnTheme">
-                                                Enter a promo code*
-                                            </a>
+                                            <div class="promoBox">
+                                                <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                            </div>
                                             <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
                                         </div>
                                     </div>
