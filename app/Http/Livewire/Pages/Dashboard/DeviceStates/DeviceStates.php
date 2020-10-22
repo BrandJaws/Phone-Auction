@@ -15,12 +15,21 @@ class DeviceStates extends Component
 
     public function delete($device_state_id)
     {
-        // Fetch existing record against the device if any
-        if($device_state_id){
-            $deviceState = DeviceState::find($device_state_id);
-            $deviceState->delete();
+
+        try {
+            // Fetch existing record against the device if any
+            if ($device_state_id) {
+                $deviceState = DeviceState::find($device_state_id);
+                $deviceState->delete();
+            }
+            return redirect()->route('dashboard.device-states');
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
-        return redirect()->route('dashboard.device-states');
     }
 
     public function render()

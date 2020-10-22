@@ -15,15 +15,33 @@ class Devices extends Component
 
     public function delete($device_id)
     {
-        // Fetch existing record against the device if any
-        if($device_id){
-            $device = Device::find($device_id);
-            $path = str_replace('storage/',"",$device->image->imageUrl);
-            Storage::disk('public')->delete($path);
-            $device->image->delete();
-            $device->delete();
+        try {
+
+            // Fetch existing record against the device if any
+            if ($device_id) {
+                $device = Device::find($device_id);
+                $path = str_replace('storage/', "", $device->image->imageUrl);
+                Storage::disk('public')->delete($path);
+                $device->image->delete();
+                foreach ($device->models as $deviceModel) {
+                    $path = str_replace('storage/', "", $deviceModel->image->imageUrl);
+                    Storage::disk('public')->delete($path);
+                    $deviceModel->image->delete();
+                    foreach ($deviceModel->quotes as $modelQuote) {
+                        $modelQuote->delete();
+                    }
+                    $deviceModel->delete();
+                }
+                $device->delete();
+            }
+            return redirect()->route('dashboard.devices');
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
-        return redirect()->route('dashboard.devices');
     }
 
     public function render()

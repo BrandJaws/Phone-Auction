@@ -39,10 +39,10 @@ Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'veri
         Route::prefix('/{device_id}/models')->name('.models')->group(function () {
             Route::get('/', DeviceModels::class);
             Route::get('/{device_model_id}', EditDeviceModel::class)->name('.edit');
-            Route::prefix('/{device_model_id}/quotes')->name('.quotes')->group(function () {
-                Route::get('/', ModelQuotes::class);
-                Route::get('/{model_quote_id}', EditModelQuote::class)->name('.edit');
-            });
+            // Route::prefix('/{device_model_id}/quotes')->name('.quotes')->group(function () {
+            //     Route::get('/', ModelQuotes::class);
+            //     Route::get('/{model_quote_id}', EditModelQuote::class)->name('.edit');
+            // });
         });
     });
 

@@ -15,12 +15,21 @@ class SellOrders extends Component
 
     public function delete($sell_order_id)
     {
-        // Fetch existing record against the device if any
-        if($sell_order_id){
-            $sellOrder = SellOrder::find($sell_order_id);
-            $sellOrder->delete();
+
+        try {
+            // Fetch existing record against the device if any
+            if ($sell_order_id) {
+                $sellOrder = SellOrder::find($sell_order_id);
+                $sellOrder->delete();
+            }
+            return redirect()->route('dashboard.sell-orders');
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
-        return redirect()->route('dashboard.sell-orders');
     }
 
     public function render()

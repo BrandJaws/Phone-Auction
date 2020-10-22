@@ -27,92 +27,107 @@ class EditModelQuote extends Component
     public $network_carrier_id;
     public $quote_price;
 
-    public function mount($device_id, $device_model_id, $model_quote_id){
-        // dd($model_quote_id);
-        $this->title = "New  Model Quote";
-        $this->device_id = null;
-        $this->device_model_id = null;
-        $this->model_quote_id = null;
-        $device = Device::find($device_id);
-        if(!$device){
-            abort(404);
-        }
-        $deviceModel = DeviceModel::find($device_model_id);
-        if(!$deviceModel){
-            abort(404);
-        }
-
-        $this->device_id = $device_id;
-        $this->device_model_id = $device_model_id;
-        $this->deviceStates = DeviceState::all();
-        $this->networkCarriers = NetworkCarrier::all();
-
-        if($model_quote_id !== 'new'){
-            $modelQuote = ModelQuote::find($model_quote_id);
-            if(!$modelQuote){
+    public function mount($device_id, $device_model_id, $model_quote_id)
+    {
+        try {
+            $this->title = "New  Model Quote";
+            $this->device_id = null;
+            $this->device_model_id = null;
+            $this->model_quote_id = null;
+            $device = Device::find($device_id);
+            if (!$device) {
                 abort(404);
             }
-            $this->title = "Edit Model Quote";
-            $this->model_quote_id = $model_quote_id;
-            $this->device_state_id = $modelQuote->device_state_id;
-            $this->network_carrier_id = $modelQuote->network_carrier_id;
-            $this->quote_price = $modelQuote->quote_price;
+            $deviceModel = DeviceModel::find($device_model_id);
+            if (!$deviceModel) {
+                abort(404);
+            }
 
+            $this->device_id = $device_id;
+            $this->device_model_id = $device_model_id;
+            $this->deviceStates = DeviceState::all();
+            $this->networkCarriers = NetworkCarrier::all();
+
+            if ($model_quote_id !== 'new') {
+                $modelQuote = ModelQuote::find($model_quote_id);
+                if (!$modelQuote) {
+                    abort(404);
+                }
+                $this->title = "Edit Model Quote";
+                $this->model_quote_id = $model_quote_id;
+                $this->device_state_id = $modelQuote->device_state_id;
+                $this->network_carrier_id = $modelQuote->network_carrier_id;
+                $this->quote_price = $modelQuote->quote_price;
+            }
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
     }
 
     public function save()
     {
-        $device = null;
-        $deviceModel = null;
-        $modelQuote = null;
-        // Fetch existing record against the device if any
-        if($this->device_id){
-            $device = Device::find($this->device_id);
-            if(!$device){
-                abort(404);
+        try {
+            $device = null;
+            $deviceModel = null;
+            $modelQuote = null;
+            // Fetch existing record against the device if any
+            if ($this->device_id) {
+                $device = Device::find($this->device_id);
+                if (!$device) {
+                    abort(404);
+                }
             }
-        }
-        // Fetch existing record against the device model if any
-        if($this->device_model_id){
-            $deviceModel = DeviceModel::find($this->device_model_id);
-            if(!$deviceModel){
-                abort(404);
+            // Fetch existing record against the device model if any
+            if ($this->device_model_id) {
+                $deviceModel = DeviceModel::find($this->device_model_id);
+                if (!$deviceModel) {
+                    abort(404);
+                }
             }
-        }
 
-        // Fetch existing record against the model quote if any
-        if($this->model_quote_id){
-            $modelQuote = ModelQuote::find($this->model_quote_id);
-            if(!$modelQuote){
-                abort(404);
+            // Fetch existing record against the model quote if any
+            if ($this->model_quote_id) {
+                $modelQuote = ModelQuote::find($this->model_quote_id);
+                if (!$modelQuote) {
+                    abort(404);
+                }
             }
+
+
+
+            $rules = [
+                'device_state_id' => 'required',
+                'network_carrier_id' => 'required',
+                'quote_price' => 'required|numeric',
+            ];
+
+            $this->validate($rules);
+            // Create new instance if not found one
+            if (!$modelQuote) {
+                $modelQuote = new ModelQuote();
+            }
+
+            $modelQuote->fill([
+                "device_model_id" => $deviceModel->id,
+                'device_state_id' => $this->device_state_id,
+                'network_carrier_id' => $this->network_carrier_id,
+                'quote_price' => $this->quote_price,
+            ]);
+
+            $modelQuote->save();
+
+            return redirect()->route('dashboard.devices.models.quotes', ["device_id" => $device->id, "device_model_id" => $deviceModel->id]);
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
-
-
-
-        $rules = [
-            'device_state_id' => 'required',
-            'network_carrier_id' => 'required',
-            'quote_price' => 'required|numeric',
-        ];
-
-        $this->validate($rules);
-        // Create new instance if not found one
-        if(!$modelQuote){
-            $modelQuote = new ModelQuote();
-        }
-
-        $modelQuote->fill([
-            "device_model_id" => $deviceModel->id,
-            'device_state_id'=> $this->device_state_id,
-            'network_carrier_id' => $this->network_carrier_id,
-            'quote_price' => $this->quote_price,
-        ]);
-
-        $modelQuote->save();
-
-        return redirect()->route('dashboard.devices.models.quotes', ["device_id"=>$device->id, "device_model_id"=>$deviceModel->id] );
     }
     public function render()
     {

@@ -15,15 +15,24 @@ class NetworkCarriers extends Component
 
     public function delete($network_carrier_id)
     {
-        // Fetch existing record against the device if any
-        if($network_carrier_id){
-            $networkCarrier = NetworkCarrier::find($network_carrier_id);
-            $path = str_replace('storage/',"",$networkCarrier->image->imageUrl);
-            Storage::disk('public')->delete($path);
-            $networkCarrier->image->delete();
-            $networkCarrier->delete();
+
+        try {
+            // Fetch existing record against the device if any
+            if ($network_carrier_id) {
+                $networkCarrier = NetworkCarrier::find($network_carrier_id);
+                $path = str_replace('storage/', "", $networkCarrier->image->imageUrl);
+                Storage::disk('public')->delete($path);
+                $networkCarrier->image->delete();
+                $networkCarrier->delete();
+            }
+            return redirect()->route('dashboard.network-carriers');
+        } catch (\Exception $e) {
+            dd("Something Went Wrong");
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
         }
-        return redirect()->route('dashboard.network-carriers');
     }
 
     public function render()
