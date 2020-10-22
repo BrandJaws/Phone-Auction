@@ -4,20 +4,19 @@ body {
 }
 
 .loaderWrap {
-    background: #fff;
+    background: rgba(255, 255, 255, .5);
     position: fixed;
     z-index: 999999;
     text-align: center;
     overflow: hidden;
     height: 100vh;
     width: 100%;
-
 }
 
 .loaderBox {
     align-items: center;
     justify-content: center;
-    display:flex;
+    display: flex;
     height: 100vh;
     width: 100%;
 }
@@ -36,6 +35,42 @@ body {
 
 .brandLogo img {
     max-width: 100%;
+}
+
+.closeBtn {
+    border: 1px solid #fff;
+    width: 40px;
+    color: #fff;
+    height: 40px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 20px;
+    float: right;
+    text-align: center;
+}
+
+.closeBtn svg {
+    fill: #fff;
+    width: 20px;
+    margin: 4px auto;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.closeBtn:hover svg {
+    transform: rotate(45deg);
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+#addAnotherDevice {
+    background: #124984;
 }
 
 .themeBtn {

@@ -24,7 +24,7 @@
                     <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
                         Repair
                     </a>
-                    <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="#modelSelectionSection" class="block mt-4 lg:inline-block lg:mt-0">
                         Phones
                     </a>
                     <a href="#." class="block mt-4 lg:inline-block lg:mt-0">
@@ -40,7 +40,33 @@
                 <a href="#" class="headerBtn inline-block text-sm px-4 mx-6 py-2 leading-none border text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Track My Offer</a>
             </div>
         </nav>
-
+        <section id="addAnotherDevice">
+            <div class="container mx-auto py-12">
+                <div class="grid grid-cols-1 gap-4 text-center">
+                    <div class="mainHeading">
+                        <h1 class="text-parrot-100 text-xl float-left">Note 9 / Rogers / Like New</h1>
+                        <a href="#." class="closeBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px" 
+                         id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap mb-6">
+                        <input class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province" />
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="w-full text-center">
+                        <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                            Add Another Device
+                        </button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                            Get Paid
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="deviceSelectionSection">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-10">
@@ -392,6 +418,25 @@
                 element.scrollIntoView();
             }
         }
+
+        const links = document.querySelectorAll(".homeHeaderNav a");
+
+        for (const link of links) {
+        link.addEventListener("click", clickHandler);
+        }
+
+        function clickHandler(e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        const offsetTop = document.querySelector(href).offsetTop;
+
+        scroll({
+            top: offsetTop,
+            behavior: "smooth"
+        });
+        }
+
+
     </script>
 
 </div>
