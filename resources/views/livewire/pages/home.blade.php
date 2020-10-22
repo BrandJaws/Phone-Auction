@@ -133,7 +133,7 @@
         @endif
         <!--  -->
         @if($sellOrderItems[$selectedOrderIndex]["selectedDeviceModel"])
-        <section class="bg-white block" id="networkSelectionSection" onload="onNetworkSelectionLoader()">
+        <section class="bg-white block" id="networkSelectionSection">
             <div class="container mx-auto py-12">
                 <div class="grid grid-cols-1 gap-4 text-center pb-4">
                     <div class="mainHeading">
@@ -147,7 +147,7 @@
                     <div class="flex flex-wrap items-center justify-center">
                         @foreach($this->networkCarriers as $carrier)
                         <div class="w-3/12 networkCarrier" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
-                            <a href="#." class="carrierBox text-center" >
+                        <a href="#." class="carrierBox text-center {{ $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"] && $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"]["id"] === $carrier->id ? 'active' : '' }}" >
                                 <div class="img-fluid">
                                     <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
                                 </div>
