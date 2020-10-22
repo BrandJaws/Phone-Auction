@@ -1,5 +1,5 @@
 <div>
-    <div class="loaderWrap" wire:loading >
+    <div class="loaderWrap" wire:loading wire:target="selectDevice, selectDeviceModel, selectNetworkCarrier, selectQuote, addAnotherDevice, displayForm">
         <div class="loaderBox">
             <img src="{{asset('assets/images/loader.gif')}}">
         </div>
@@ -42,29 +42,39 @@
         </nav>
         <section id="addAnotherDevice">
             <div class="container mx-auto py-12">
-                <div class="grid grid-cols-1 gap-4 text-center">
-                    <div class="mainHeading">
-                        <h1 class="text-parrot-100 text-xl float-left">Note 9 / Rogers / Like New</h1>
-                        <a href="#." class="closeBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px" 
-                         id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
-                        </a>
-                    </div>
-                    <div class="flex flex-wrap mb-6">
-                        <input class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province" />
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-full text-center">
-                        <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
-                            Add Another Device
-                        </button>
-                        &nbsp;&nbsp;&nbsp;
-                        <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
-                            Get Paid
-                        </button>
+                @if(count($completedSellOrderItems) > 0)
+                    <div class="grid grid-cols-1 gap-4 text-center">
+                        @foreach($sellOrderItems as $index => $sellOrder)
+                            @if($sellOrder["completed"])
+                                <div wire:key="{{ $sellOrder["number"] }}">
+                                    <div class="mainHeading" wire:key="{{ $sellOrder["number"] }}">
+                                        <h1 class="text-parrot-100 text-xl float-left">
+                                            {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
+                                        </h1>
+                                        <a href="#." class="closeBtn">
+                                        <svg wire:key="{{ $sellOrder["number"] }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
+                                        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
+                                        </a>
+                                    </div>
+                                    <div class="flex flex-wrap mb-6" wire:key="{{ $sellOrder["number"] }}">
+                                        <input wire:key="{{ $sellOrder["number"] }}" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                        <div class="flex items-center gap-6">
+                            <div class="w-full text-center">
+                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                                Add Another Device
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                                Get Paid
+                            </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </section>
         <section id="deviceSelectionSection">
@@ -415,26 +425,29 @@
         function scrollToElement(elementId){
             var element = document.getElementById(elementId);
             if(element){
-                element.scrollIntoView();
+            // element.scrollIntoView();
+                scroll({
+                    top: element.offsetTop,
+                    behavior: "smooth"
+                });
             }
         }
 
-        const links = document.querySelectorAll(".homeHeaderNav a");
+        // const links = document.querySelectorAll(".homeHeaderNav a");
+        // for (const link of links) {
+        //     link.addEventListener("click", clickHandler);
+        // }
 
-        for (const link of links) {
-        link.addEventListener("click", clickHandler);
-        }
+        // function clickHandler(e) {
+        // e.preventDefault();
+        // const href = this.getAttribute("href");
+        // const offsetTop = document.querySelector(href).offsetTop;
 
-        function clickHandler(e) {
-        e.preventDefault();
-        const href = this.getAttribute("href");
-        const offsetTop = document.querySelector(href).offsetTop;
-
-        scroll({
-            top: offsetTop,
-            behavior: "smooth"
-        });
-        }
+        // scroll({
+        //     top: offsetTop,
+        //     behavior: "smooth"
+        // });
+        // }
 
 
     </script>

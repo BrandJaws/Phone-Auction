@@ -11,7 +11,8 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $sellOrderItems;
+    public $sellOrderItems = [];
+    public $completedSellOrderItems = [];
     public $selectedOrderIndex;
 
     public $devices;
@@ -33,16 +34,20 @@ class Home extends Component
     public $paymentEmail = "";
     public $promoCode = "";
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function getBlankSellOrderItem()
     {
         return [
             // "devices" => null,
             // "networkCarriers" => null,
+            "number" => count($this->sellOrderItems) + 1,
             "selectedDevice" => null,
             "selectedDeviceModel" => null,
             "selectedNetworkCarrier" => null,
             "modelQuotes" => null,
             "selectedQuote" => null,
+            "completed" => false
         ];
     }
 
@@ -53,7 +58,7 @@ class Home extends Component
         try {
             $this->devices = Device::with('image')->get();
             $this->networkCarriers = NetworkCarrier::with('image')->get();
-            $this->sellOrderItems = [$this->getBlankSellOrderItem()];
+            $this->sellOrderItems[] = $this->getBlankSellOrderItem();
             $this->selectedOrderIndex = 0;
         } catch (\Exception $e) {
             dd("Something Went Wrong");
@@ -156,6 +161,7 @@ class Home extends Component
     {
 
         try {
+            $this->setCurrentSellOrderItemAsComplete();
             $this->formVisible = false;
             $this->sellOrderItems[] = $this->getBlankSellOrderItem();
             $this->selectedOrderIndex++;
@@ -173,9 +179,10 @@ class Home extends Component
     {
 
         try {
-
+            $this->setCurrentSellOrderItemAsComplete();
             $this->formVisible = true;
             $this->emit('scrollToSection', 'requestFormSection');
+
         } catch (\Exception $e) {
             dd("Something Went Wrong");
             \Log::error(__METHOD__, [
@@ -183,6 +190,14 @@ class Home extends Component
                 'line' => $e->getLine()
             ]);
         }
+    }
+
+    private function setCurrentSellOrderItemAsComplete() {
+        $this->sellOrderItems[$this->selectedOrderIndex]["completed"] = true;
+        if(array_search($this->selectedOrderIndex, $this->completedSellOrderItems) === false){
+            $this->completedSellOrderItems[] = $this->selectedOrderIndex;
+        }
+        // $this->emit('refreshComponent');
     }
 
     public function save()
