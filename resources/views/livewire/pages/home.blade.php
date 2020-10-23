@@ -1,5 +1,5 @@
 <div>
-    <div class="loaderWrap" wire:loading wire:target="selectDevice, selectDeviceModel, selectNetworkCarrier, selectQuote, addAnotherDevice, displayForm">
+    <div class="loaderWrap" wire:loading wire:target="selectDevice, selectDeviceModel, selectNetworkCarrier, selectQuote, addAnotherDevice, displayForm, removeSellOrder">
         <div class="loaderBox">
             <img src="{{asset('assets/images/loader.gif')}}">
         </div>
@@ -50,9 +50,9 @@
                                     <h1 class="text-parrot-100 text-xl float-left">
                                         {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
                                     </h1>
-                                    <a  href="#." class="closeBtn">
-                                    <svg  wire:key="icon - {{ $index }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
-                                    id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
+                                    <a  href="#." class="closeBtn" wire:click.prevent="removeSellOrder({{ $index }})">
+                                        <svg  wire:key="icon - {{ $index }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
+                                        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
                                     </a>
                                 </div>
                                 <div class="flex flex-wrap mb-6" wire:key="total - {{ $index }}">

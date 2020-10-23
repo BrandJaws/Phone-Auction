@@ -37,7 +37,7 @@ class Home extends Component
 
     protected $listeners = ['refreshComponent' => '$refresh'];
 
-    public function getBlankSellOrderItem()
+    private function getBlankSellOrderItem()
     {
         return [
             "selectedDevice" => null,
@@ -155,10 +155,7 @@ class Home extends Component
 
         try {
             $this->setCurrentSellOrderItemAsComplete(true);
-            $this->formVisible = false;
-            $this->sellOrderItems[] = $this->getBlankSellOrderItem();
-            $this->selectedOrderIndex++;
-            $this->emit('scrollToSection', 'deviceSelectionSection');
+            $this->addNewDevice();
         } catch (\Exception $e) {
             dd("Something Went Wrong");
             \Log::error(__METHOD__, [
@@ -166,6 +163,13 @@ class Home extends Component
                 'line' => $e->getLine()
             ]);
         }
+    }
+
+    private function addNewDevice(){
+        $this->formVisible = false;
+        $this->sellOrderItems[] = $this->getBlankSellOrderItem();
+        $this->selectedOrderIndex++;
+        $this->emit('scrollToSection', 'deviceSelectionSection');
     }
 
     public function displayForm()
@@ -200,7 +204,7 @@ class Home extends Component
 
     }
 
-    public function setNetTotal(){
+    private function setNetTotal(){
         $this->netTotal = 0;
         foreach($this->sellOrderItems as $item){
             if($item["selectedQuote"] && $item["completed"]){
@@ -211,6 +215,19 @@ class Home extends Component
         $netTotalComponents = explode(".", sprintf('%0.2f', $netTotal));
         $this->netTotalWhole = $netTotalComponents[0];
         $this->netTotalDecimal = $netTotalComponents[1];
+    }
+
+    public function removeSellOrder($sellOrderIndex){
+        unset($this->sellOrderItems[$sellOrderIndex]);
+        $indexOfCompleted = array_search($sellOrderIndex, $this->completedSellOrderItems);
+        if($indexOfCompleted !== false){
+            unset($this->completedSellOrderItems[$indexOfCompleted]);
+        }
+        $this->selectedOrderIndex--;
+        $this->sellOrderItems = array_values($this->sellOrderItems);
+        if(count($this->sellOrderItems) === 0){
+            $this->addNewDevice();
+        }
     }
 
     public function save()
