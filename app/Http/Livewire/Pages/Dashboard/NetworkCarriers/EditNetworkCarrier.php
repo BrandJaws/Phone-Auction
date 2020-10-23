@@ -58,7 +58,7 @@ class EditNetworkCarrier extends Component
             }
 
             $rules = [
-                'name' => 'required||max:255',
+                'name' => 'required|max:255',
             ];
             // Add image validation only if new record
             // Add image validation only if new record

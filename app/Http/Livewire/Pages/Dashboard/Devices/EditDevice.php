@@ -59,7 +59,7 @@ class EditDevice extends Component
             }
 
             $rules = [
-                'name' => 'required||max:255',
+                'name' => 'required|max:255',
             ];
             // Add image validation only if new record
             if (!$this->device_id) {

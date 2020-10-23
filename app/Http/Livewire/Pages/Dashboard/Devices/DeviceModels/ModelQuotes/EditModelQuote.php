@@ -101,8 +101,8 @@ class EditModelQuote extends Component
 
 
             $rules = [
-                'device_state_id' => 'required',
-                'network_carrier_id' => 'required',
+                'device_state_id' => 'required|integer',
+                'network_carrier_id' => 'required|integer',
                 'quote_price' => 'required|numeric',
             ];
 
