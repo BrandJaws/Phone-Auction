@@ -27,11 +27,11 @@ class NetworkCarriers extends Component
             }
             return redirect()->route('dashboard.network-carriers');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 

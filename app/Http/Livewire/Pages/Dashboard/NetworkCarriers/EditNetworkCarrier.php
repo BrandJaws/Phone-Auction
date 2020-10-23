@@ -37,11 +37,11 @@ class EditNetworkCarrier extends Component
                 $this->network_carrier_id = $network_carrier_id;
             }
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -103,12 +103,15 @@ class EditNetworkCarrier extends Component
             }
 
             return redirect()->route('dashboard.network-carriers');
+        } catch(\Illuminate\Validation\ValidationException $e){
+            throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
+
         }
     }
 

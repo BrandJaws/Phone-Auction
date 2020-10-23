@@ -35,11 +35,11 @@ class EditDeviceState extends Component
                 $this->device_state_id = $device_state_id;
             }
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -49,11 +49,11 @@ class EditDeviceState extends Component
         try {
             $this->features[] = "";
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -63,11 +63,11 @@ class EditDeviceState extends Component
         try {
             unset($this->features[$index]);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -104,12 +104,15 @@ class EditDeviceState extends Component
             $deviceState->save();
 
             return redirect()->route('dashboard.device-states');
+        } catch(\Illuminate\Validation\ValidationException $e){
+            throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
+
         }
     }
 

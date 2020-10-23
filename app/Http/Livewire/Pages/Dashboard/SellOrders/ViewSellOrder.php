@@ -54,69 +54,11 @@ class ViewSellOrder extends Component
             }
             $this->selectedOrderIndex = 0;
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
-        }
-    }
-
-    public function save()
-    {
-
-        try {
-            $sellOrder = null;
-            // Fetch existing record against the device if any
-            if ($this->sell_order_id) {
-                $sellOrder = SellOrder::find($this->sell_order_id);
-                if (!$sellOrder) {
-                    abort(404);
-                }
-            }
-
-            $rules = [
-                'model_quote_id' => 'exists:model_quotes,id',
-                'name' => 'required|max:255',
-                'email' => 'required|max:255',
-                'address' => 'required|max:255',
-                'city' => 'required|max:255',
-                'province' => 'required|max:255',
-                'postalCode' => 'required|max:255',
-                'phone' => 'required|max:255',
-                'onlyShippingLabel' => 'required|boolean',
-                'paymentMethod' => 'required|max:255',
-                'paymentEmail' => 'required|max:255',
-            ];
-
-            $this->validate($rules);
-
-            // Create new instance if not found one
-            if (!$sellOrder) {
-                $sellOrder = new SellOrder();
-            }
-
-            $sellOrder->fill([
-                "name" => $this->name,
-                'email' => $this->email,
-                'address' => $this->address,
-                'city' => $this->city,
-                'province' => $this->province,
-                'postalCode' => $this->postalCode,
-                'phone' => $this->phone,
-                'onlyShippingLabel' => $this->onlyShippingLabel,
-                'paymentMethod' => $this->paymentMethod,
-                'paymentEmail' => $this->paymentEmail,
-            ]);
-
-            $sellOrder->save();
-            return redirect()->route('dashboard.sell-orders');
-        } catch (\Exception $e) {
             dd("Something Went Wrong");
-            \Log::error(__METHOD__, [
-                'error' => $e->getMessage(),
-                'line' => $e->getLine()
-            ]);
         }
     }
 

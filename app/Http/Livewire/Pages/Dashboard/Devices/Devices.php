@@ -36,11 +36,11 @@ class Devices extends Component
             }
             return redirect()->route('dashboard.devices');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 

@@ -20,11 +20,11 @@ class DeviceModels extends Component
         try {
             $this->device_id = $device_id;
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -45,11 +45,11 @@ class DeviceModels extends Component
             }
             return redirect()->route('dashboard.devices.models', $this->device_id);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 

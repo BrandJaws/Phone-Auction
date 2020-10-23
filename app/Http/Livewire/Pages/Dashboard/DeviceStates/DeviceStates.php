@@ -24,11 +24,11 @@ class DeviceStates extends Component
             }
             return redirect()->route('dashboard.device-states');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 

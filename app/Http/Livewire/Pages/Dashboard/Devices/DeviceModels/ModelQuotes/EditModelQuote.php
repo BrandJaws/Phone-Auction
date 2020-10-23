@@ -9,6 +9,7 @@ use App\Models\DeviceState;
 use App\Models\Image;
 use App\Models\ModelQuote;
 use App\Models\NetworkCarrier;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 
 class EditModelQuote extends Component
@@ -60,11 +61,11 @@ class EditModelQuote extends Component
                 $this->quote_price = $modelQuote->quote_price;
             }
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -121,12 +122,15 @@ class EditModelQuote extends Component
             $modelQuote->save();
 
             return redirect()->route('dashboard.devices.models.quotes', ["device_id" => $device->id, "device_model_id" => $deviceModel->id]);
+        } catch(\Illuminate\Validation\ValidationException $e){
+            throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
+
         }
     }
     public function render()

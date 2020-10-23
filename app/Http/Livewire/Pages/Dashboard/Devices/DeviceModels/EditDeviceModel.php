@@ -78,11 +78,11 @@ class EditDeviceModel extends Component
                 }
             }
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -169,12 +169,16 @@ class EditDeviceModel extends Component
             }
 
             return redirect()->route('dashboard.devices.models', $device->id);
+
+        } catch(\Illuminate\Validation\ValidationException $e){
+            throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
+
         }
     }
     public function render()

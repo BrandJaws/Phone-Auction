@@ -22,11 +22,11 @@ class ModelQuotes extends Component
             $this->device_id = $device_id;
             $this->device_model_id = $device_id;
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -40,11 +40,11 @@ class ModelQuotes extends Component
             }
             return redirect()->route('dashboard.devices.models', $this->device_id);
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
