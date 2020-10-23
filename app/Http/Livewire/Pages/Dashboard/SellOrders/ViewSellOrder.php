@@ -16,7 +16,8 @@ class ViewSellOrder extends Component
 
     // Form fields for binding
     public $model_quote_id;
-    public $name;
+    public $firstName;
+    public $lastName;
     public $email;
     public $address;
     public $city;
@@ -38,7 +39,8 @@ class ViewSellOrder extends Component
                     abort(404);
                 }
                 $this->model_quote_id = $sellOrder->model_quote_id;
-                $this->name = $sellOrder->name;
+                $this->firstName = $sellOrder->firstName;
+                $this->lastName = $sellOrder->lastName;
                 $this->email = $sellOrder->email;
                 $this->address = $sellOrder->address;
                 $this->city = $sellOrder->city;
