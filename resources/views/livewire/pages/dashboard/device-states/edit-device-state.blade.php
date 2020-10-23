@@ -25,7 +25,7 @@
 
                 <div  class="w-full md:w-1/2 pl-0 px-3 mb-6 md:mb-0">
                     <label for="features" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >{{ __('Features') }}</label>
-                    
+
                     @foreach ($features as $featureIndex => $feature)
                         <div class="mt-2 inline-block w-full">
                             <input id="features.{{$featureIndex}}" class="float-left withBtn appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" wire:model="features.{{$featureIndex}}"/>

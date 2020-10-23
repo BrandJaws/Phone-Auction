@@ -15,7 +15,7 @@ class CreateSellOrdersTable extends Migration
     {
         Schema::create('sell_orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('model_quote_id');
+            // $table->integer('model_quote_id');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');
@@ -27,8 +27,8 @@ class CreateSellOrdersTable extends Migration
             $table->boolean('onlyShippingLabel');
             $table->string('paymentMethod');
             $table->string('paymentEmail');
-            $table->string('promoCode');
-            $table->decimal('netTotal', 10, 2);
+            $table->string('promoCode')->nullable();
+            $table->decimal('netTotal', 10, 2)->default(0);
             $table->timestamps();
         });
     }

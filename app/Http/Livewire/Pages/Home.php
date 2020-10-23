@@ -5,6 +5,9 @@ namespace App\Http\Livewire\Pages;
 use App\Models\Device;
 use App\Models\DeviceModel;
 use App\Models\NetworkCarrier;
+use App\Models\SellOrder;
+use App\Models\SellOrderItem;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Home extends Component
@@ -233,29 +236,79 @@ class Home extends Component
     public function save()
     {
         try {
-            dd($this->sellOrderItems);
-            dd(
-                $this->firstName,
-                $this->model_quote_id,
-                $this->firstName,
-                $this->lastName,
-                $this->email,
-                $this->address,
-                $this->city,
-                $this->province,
-                $this->postalCode,
-                $this->phone,
-                $this->onlyShippingLabel,
-                $this->paymentMethod,
-                $this->paymentEmail,
-                $this->promoCode,
-            );
-        } catch (\Exception $e) {
-            dd("Something Went Wrong");
+            DB::beginTransaction();
+
+            $rules = [
+                'firstName' => 'required|string|max:255',
+                // 'model_quote_id'=> 'integer',
+                'firstName'=> 'required|string|max:255',
+                'lastName'=> 'required|string|max:255',
+                'email'=> 'required|email|max:255',
+                'address'=> 'required|string|max:255',
+                'city'=> 'required|string|max:255',
+                'province'=> 'required|string|max:255',
+                'postalCode'=> 'required|string|max:255',
+                'phone'=> 'required|string|max:255',
+                'onlyShippingLabel'=> 'required|boolean',
+                'paymentMethod'=> 'required|string|max:255',
+                'paymentEmail'=> 'required|email|max:255',
+                'promoCode'=> 'string|max:255',
+            ];
+
+            $this->validate($rules);
+
+            // Create new instance if not found one
+            $sellOrder = new SellOrder();
+
+            $sellOrder->fill([
+                'firstName' => $this->firstName,
+                // 'model_quote_id'=> $this->model_quote_id,
+                'firstName'=>  $this->firstName,
+                'lastName'=> $this->lastName,
+                'email'=> $this->email,
+                'address'=> $this->address,
+                'city'=> $this->city,
+                'province'=> $this->province,
+                'postalCode'=> $this->postalCode,
+                'phone'=> $this->phone,
+                'onlyShippingLabel'=> $this->onlyShippingLabel,
+                'paymentMethod'=> $this->paymentMethod,
+                'paymentEmail'=> $this->paymentEmail,
+                'promoCode'=>  $this->promoCode,
+                'netTotal' =>  $this->netTotal,
+            ]);
+
+            $sellOrder->save();
+
+            foreach($this->sellOrderItems as $item){
+                $sellOrderItem = new SellOrderItem();
+                $sellOrderItem->fill([
+                    'device_id' => $item["selectedDevice"]["id"],
+                    'device_model_id' => $item["selectedDeviceModel"]["id"],
+                    'network_carrier_id' => $item["selectedNetworkCarrier"]["id"],
+                    'model_quote_id' => $item["selectedQuote"]["id"],
+                    'promoCode' => $item["promoCode"],
+                ]);
+                $sellOrderItem->save();
+
+            }
+
+            DB::commit();
+
+            return redirect()->route('home');
+
+        }
+        catch(\Illuminate\Validation\ValidationException $e){
+            DB::rollBack();
+            throw new \Illuminate\Validation\ValidationException($e);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong", $e);
         }
     }
 

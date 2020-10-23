@@ -9,7 +9,7 @@ class SellOrder extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'model_quote_id',
+        // 'model_quote_id',
         'firstName',
         'lastName',
         'email',
@@ -22,5 +22,6 @@ class SellOrder extends Model
         'paymentMethod',
         'paymentEmail',
         'promoCode',
+        'netTotal'
     ];
 }

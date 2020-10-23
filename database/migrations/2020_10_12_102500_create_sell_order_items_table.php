@@ -19,7 +19,7 @@ class CreateSellOrderItemsTable extends Migration
             $table->integer('device_model_id');
             $table->integer('network_carrier_id');
             $table->integer('model_quote_id');
-            $table->string('promoCode');
+            $table->string('promoCode')->nullable();
             $table->timestamps();
         });
     }

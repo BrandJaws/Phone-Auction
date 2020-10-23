@@ -245,12 +245,14 @@
                                         First Name
                                     </label>
                                     <input wire:model="firstName" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Jane" >
+                                    @error('firstName') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="last-name">
                                         Last Name
                                     </label>
                                     <input wire:model="lastName" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="last-name" type="text" placeholder="Doe">
+                                    @error('lastName') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
@@ -260,7 +262,8 @@
                                             Email
                                         </label>
                                         <input wire:model="email" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="email" type="email" placeholder="johndoe@gmail.com">
-                                </div>
+                                        @error('email') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
                             </div>
 
                             <div class="flex flex-wrap -mx-3 mb-6">
@@ -268,8 +271,9 @@
                                         <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="street-address">
                                             Street Address
                                         </label>
-                                        <input wire:model="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="email" placeholder="johndoe@gmail.com">
-                                </div>
+                                        <input wire:model="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="string" placeholder="johndoe@gmail.com">
+                                        @error('address') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
                             </div>
 
                             <div class="flex flex-wrap -mx-3 mb-6">
@@ -278,12 +282,14 @@
                                         City
                                     </label>
                                     <input wire:model="city" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="city" type="text" placeholder="City">
+                                    @error('city') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="province">
                                         Province
                                     </label>
                                     <input wire:model="province" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province">
+                                    @error('province') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
@@ -293,12 +299,14 @@
                                         Postal Code
                                     </label>
                                     <input wire:model="postalCode" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="postal-code" type="text" placeholder="Postal Code">
+                                    @error('postalCode') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="phone-number">
                                         Phone Number
                                     </label>
                                     <input wire:model="phone" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="phone-number" type="text" placeholder=" Phone Number">
+                                    @error('phone') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
@@ -357,7 +365,8 @@
                             <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <input wire:model="paymentEmail" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="payment-email" type="email" placeholder=" Payment Email*">
-                                </div>
+                                        @error('paymentEmail') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
                             </div>
 
 

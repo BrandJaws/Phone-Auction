@@ -18,7 +18,7 @@ class CreateModelQuotesTable extends Migration
             $table->integer('device_model_id');
             $table->integer('device_state_id');
             $table->integer('network_carrier_id')->nullable();
-            $table->decimal('quote_price', 8, 2);
+            $table->decimal('quote_price', 8, 2)->default(0);
             $table->timestamps();
         });
     }
