@@ -46,19 +46,20 @@
                     <div class="grid grid-cols-1 gap-4 text-center">
                         @foreach($sellOrderItems as $index => $sellOrder)
                             @if($sellOrder["completed"])
-                                <div class="mainHeading" wire:key="{{ $sellOrder["number"] }}">
+                                <div class="mainHeading" wire:key="title - {{ $index }}">
                                     <h1 class="text-parrot-100 text-xl float-left">
                                         {{ $sellOrder["selectedDeviceModel"]["name"] }} / {{ $sellOrder["selectedNetworkCarrier"]["name"] }} / {{ $sellOrder["selectedQuote"]["device_state"]["condition"] }}
                                     </h1>
-                                    <a href="#." class="closeBtn">
-                                    <svg wire:key="{{ $sellOrder["number"] }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
+                                    <a  href="#." class="closeBtn">
+                                    <svg  wire:key="icon - {{ $index }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px"
                                     id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="30px" xml:space="preserve"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
                                     </a>
                                 </div>
-                                <div class="flex flex-wrap mb-6" wire:key="{{ $sellOrder["number"] }}">
-                                    <input wire:key="{{ $sellOrder["number"] }}" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
+                                <div class="flex flex-wrap mb-6" wire:key="total - {{ $index }}">
+                                    <input  class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200"  type="text" placeholder="Total" value="{{ $sellOrder["selectedQuote"]["quote_price"] }}" readonly/>
                                 </div>
                             @endif
+
                         @endforeach
                         <div class="flex items-center gap-6">
                             <div class="w-full text-center">
@@ -204,7 +205,7 @@
                                         @endif
                                         <div class="info">
                                             <div class="promoBox">
-                                                <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                                <input wire:model="sellOrderItems.{{$selectedOrderIndex}}.promoCode" type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
                                             </div>
                                             <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
                                         </div>
@@ -385,15 +386,15 @@
                                     <div class="tabRightBox border-l-0">
                                         <div class="price">
                                             <span class="currency">$</span>
-                                            <span class="amount">10</span>
-                                            <span class="decimalPoint">.00</span>
+                                            <span class="amount">{{ $netTotalWhole }}</span>
+                                            <span class="decimalPoint">.{{ $netTotalDecimal }}</span>
                                         </div>
-                                        <div class="info">
+                                        {{-- <div class="info">
                                             <div class="promoBox">
                                                 <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
                                             </div>
                                             <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

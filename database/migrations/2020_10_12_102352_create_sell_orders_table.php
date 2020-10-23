@@ -28,6 +28,7 @@ class CreateSellOrdersTable extends Migration
             $table->string('paymentMethod');
             $table->string('paymentEmail');
             $table->string('promoCode');
+            $table->decimal('netTotal', 10, 2);
             $table->timestamps();
         });
     }

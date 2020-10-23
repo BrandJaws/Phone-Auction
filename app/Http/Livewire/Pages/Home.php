@@ -4,9 +4,7 @@ namespace App\Http\Livewire\Pages;
 
 use App\Models\Device;
 use App\Models\DeviceModel;
-use App\Models\DeviceState;
 use App\Models\NetworkCarrier;
-use App\Models\User;
 use Livewire\Component;
 
 class Home extends Component
@@ -18,6 +16,9 @@ class Home extends Component
     public $devices;
     public $networkCarriers;
     public $formVisible = false;
+    public $netTotal = 0;
+    public $netTotalWhole = 0;
+    public $netTotalDecimal = 0;
 
     // Form binding fields
     public $model_quote_id = "";
@@ -39,15 +40,12 @@ class Home extends Component
     public function getBlankSellOrderItem()
     {
         return [
-            // "devices" => null,
-            // "networkCarriers" => null,
-            "number" => count($this->sellOrderItems) + 1,
             "selectedDevice" => null,
             "selectedDeviceModel" => null,
             "selectedNetworkCarrier" => null,
-            "modelQuotes" => null,
             "selectedQuote" => null,
-            "completed" => false
+            "completed" => false,
+            "promoCode" => null
         ];
     }
 
@@ -71,13 +69,12 @@ class Home extends Component
 
     public function selectDevice($deviceId)
     {
-
         try {
             $this->formVisible = false;
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"] = null;
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = null;
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = null;
-
+            $this->setCurrentSellOrderItemAsComplete(false);
 
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id', $deviceId)
                 ->with('models.image')
@@ -99,6 +96,7 @@ class Home extends Component
             $this->formVisible = false;
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = null;
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = null;
+            $this->setCurrentSellOrderItemAsComplete(false);
 
             $deviceModel = DeviceModel::where('id', $deviceModelId)
                 ->with('quotes.device_state')
@@ -126,10 +124,6 @@ class Home extends Component
     {
 
         try {
-            // $this->formVisible = false;
-            // if(count($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"]) > 0){
-            //     $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = $this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"][0];
-            // }
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = $this->networkCarriers->where('id', $networkCarrierId)->first();
             $this->emit('scrollToSection', 'quoteSelectionSection');
         } catch (\Exception $e) {
@@ -145,7 +139,6 @@ class Home extends Component
     {
 
         try {
-            // dd($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]->quotes);
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"])->where('id', $quoteId)->first();
             $this->emit('scrollToSection', 'requestFormSection');
         } catch (\Exception $e) {
@@ -161,7 +154,7 @@ class Home extends Component
     {
 
         try {
-            $this->setCurrentSellOrderItemAsComplete();
+            $this->setCurrentSellOrderItemAsComplete(true);
             $this->formVisible = false;
             $this->sellOrderItems[] = $this->getBlankSellOrderItem();
             $this->selectedOrderIndex++;
@@ -179,12 +172,12 @@ class Home extends Component
     {
 
         try {
-            $this->setCurrentSellOrderItemAsComplete();
+            $this->setCurrentSellOrderItemAsComplete(true);
             $this->formVisible = true;
             $this->emit('scrollToSection', 'requestFormSection');
 
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
+            dd("Something Went Wrong", $e);
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
@@ -192,12 +185,32 @@ class Home extends Component
         }
     }
 
-    private function setCurrentSellOrderItemAsComplete() {
-        $this->sellOrderItems[$this->selectedOrderIndex]["completed"] = true;
-        if(array_search($this->selectedOrderIndex, $this->completedSellOrderItems) === false){
-            $this->completedSellOrderItems[] = $this->selectedOrderIndex;
+    private function setCurrentSellOrderItemAsComplete($completed) {
+        if($this->sellOrderItems[$this->selectedOrderIndex]["completed"] !== $completed){
+            $this->sellOrderItems[$this->selectedOrderIndex]["completed"] = $completed;
+            $this->completedSellOrderItems = [];
+            foreach($this->sellOrderItems as $index => $item){
+                if($item["completed"] && array_search($index, $this->completedSellOrderItems) === false){
+                    $this->completedSellOrderItems[] = $index;
+                }
+            }
+            $this->setNetTotal();
+            // $this->emit('refreshComponent');
         }
-        // $this->emit('refreshComponent');
+
+    }
+
+    public function setNetTotal(){
+        $this->netTotal = 0;
+        foreach($this->sellOrderItems as $item){
+            if($item["selectedQuote"] && $item["completed"]){
+                $this->netTotal += $item["selectedQuote"]["quote_price"];
+            }
+        }
+        $netTotal = $this->netTotal;
+        $netTotalComponents = explode(".", sprintf('%0.2f', $netTotal));
+        $this->netTotalWhole = $netTotalComponents[0];
+        $this->netTotalDecimal = $netTotalComponents[1];
     }
 
     public function save()
