@@ -63,11 +63,11 @@
                         @endforeach
                         <div class="flex items-center gap-6">
                             <div class="w-full text-center">
-                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button" wire:click.prevent="addAnotherDevice" {{ !$sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"] ? 'disabled' : '' }}>
                                 Add Another Device
                             </button>
                             &nbsp;&nbsp;&nbsp;
-                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                            <button class="shadow mb-0 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button" wire:click="displayForm">
                                 Get Paid
                             </button>
                             </div>

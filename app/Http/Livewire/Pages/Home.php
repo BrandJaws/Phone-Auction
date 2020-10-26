@@ -62,11 +62,11 @@ class Home extends Component
             $this->sellOrderItems[] = $this->getBlankSellOrderItem();
             $this->selectedOrderIndex = 0;
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -84,11 +84,11 @@ class Home extends Component
                 ->first()->toArray();
             $this->emit('scrollToSection', 'modelSelectionSection');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -115,11 +115,11 @@ class Home extends Component
             }
             $this->emit('scrollToSection', 'networkSelectionSection');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -130,11 +130,11 @@ class Home extends Component
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"] = $this->networkCarriers->where('id', $networkCarrierId)->first();
             $this->emit('scrollToSection', 'quoteSelectionSection');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -145,11 +145,11 @@ class Home extends Component
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"])->where('id', $quoteId)->first();
             $this->emit('scrollToSection', 'requestFormSection');
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
@@ -160,19 +160,27 @@ class Home extends Component
             $this->setCurrentSellOrderItemAsComplete(true);
             $this->addNewDevice();
         } catch (\Exception $e) {
-            dd("Something Went Wrong");
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong");
         }
     }
 
     private function addNewDevice(){
-        $this->formVisible = false;
-        $this->sellOrderItems[] = $this->getBlankSellOrderItem();
-        $this->selectedOrderIndex++;
-        $this->emit('scrollToSection', 'deviceSelectionSection');
+        try {
+            $this->formVisible = false;
+            $this->sellOrderItems[] = $this->getBlankSellOrderItem();
+            $this->selectedOrderIndex++;
+            $this->emit('scrollToSection', 'deviceSelectionSection');
+        } catch (\Exception $e) {
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
+            dd("Something Went Wrong", $e);
+        }
     }
 
     public function displayForm()
@@ -184,53 +192,88 @@ class Home extends Component
             $this->emit('scrollToSection', 'requestFormSection');
 
         } catch (\Exception $e) {
-            dd("Something Went Wrong", $e);
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
+            dd("Something Went Wrong", $e);
         }
     }
 
     private function setCurrentSellOrderItemAsComplete($completed) {
-        if($this->sellOrderItems[$this->selectedOrderIndex]["completed"] !== $completed){
-            $this->sellOrderItems[$this->selectedOrderIndex]["completed"] = $completed;
-            $this->completedSellOrderItems = [];
-            foreach($this->sellOrderItems as $index => $item){
-                if($item["completed"] && array_search($index, $this->completedSellOrderItems) === false){
-                    $this->completedSellOrderItems[] = $index;
+        try {
+            if($this->sellOrderItems[$this->selectedOrderIndex]["completed"] !== $completed){
+                if( $this->sellOrderItems[$this->selectedOrderIndex]["selectedNetworkCarrier"]){
+                    $this->sellOrderItems[$this->selectedOrderIndex]["completed"] = $completed;
+                    $this->completedSellOrderItems = [];
+                    foreach($this->sellOrderItems as $index => $item){
+                        if($item["completed"] && array_search($index, $this->completedSellOrderItems) === false){
+                            $this->completedSellOrderItems[] = $index;
+                        }
+                    }
+                    $this->setNetTotal();
+                }else{
+                    $this->removeSellOrder($this->selectedOrderIndex);
                 }
+
+                // $this->emit('refreshComponent');
             }
-            $this->setNetTotal();
-            // $this->emit('refreshComponent');
+        } catch (\Exception $e) {
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
+            dd("Something Went Wrong", $e);
         }
 
     }
 
     private function setNetTotal(){
-        $this->netTotal = 0;
-        foreach($this->sellOrderItems as $item){
-            if($item["selectedQuote"] && $item["completed"]){
-                $this->netTotal += $item["selectedQuote"]["quote_price"];
+        try {
+            $this->netTotal = 0;
+            foreach($this->sellOrderItems as $item){
+                if($item["selectedQuote"] && $item["completed"]){
+                    $this->netTotal += $item["selectedQuote"]["quote_price"];
+                }
             }
+            $netTotal = $this->netTotal;
+            $netTotalComponents = explode(".", sprintf('%0.2f', $netTotal));
+            $this->netTotalWhole = $netTotalComponents[0];
+            $this->netTotalDecimal = $netTotalComponents[1];
+
+        } catch (\Exception $e) {
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
+            dd("Something Went Wrong", $e);
         }
-        $netTotal = $this->netTotal;
-        $netTotalComponents = explode(".", sprintf('%0.2f', $netTotal));
-        $this->netTotalWhole = $netTotalComponents[0];
-        $this->netTotalDecimal = $netTotalComponents[1];
+
+
     }
 
     public function removeSellOrder($sellOrderIndex){
-        unset($this->sellOrderItems[$sellOrderIndex]);
-        $indexOfCompleted = array_search($sellOrderIndex, $this->completedSellOrderItems);
-        if($indexOfCompleted !== false){
-            unset($this->completedSellOrderItems[$indexOfCompleted]);
+        try {
+            unset($this->sellOrderItems[$sellOrderIndex]);
+            $indexOfCompleted = array_search($sellOrderIndex, $this->completedSellOrderItems);
+            if($indexOfCompleted !== false){
+                unset($this->completedSellOrderItems[$indexOfCompleted]);
+            }
+            $this->selectedOrderIndex--;
+            $this->sellOrderItems = array_values($this->sellOrderItems);
+            if(count($this->sellOrderItems) === 0){
+                $this->addNewDevice();
+            }
+            $this->setNetTotal();
+
+        } catch (\Exception $e) {
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
+            dd("Something Went Wrong", $e);
         }
-        $this->selectedOrderIndex--;
-        $this->sellOrderItems = array_values($this->sellOrderItems);
-        if(count($this->sellOrderItems) === 0){
-            $this->addNewDevice();
-        }
+
     }
 
     public function save()
