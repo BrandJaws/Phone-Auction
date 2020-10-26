@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Pages;
 
+use App\Mail\SellOrderReceived;
 use App\Models\Device;
 use App\Models\DeviceModel;
 use App\Models\NetworkCarrier;
 use App\Models\SellOrder;
 use App\Models\SellOrderItem;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Home extends Component
@@ -336,7 +338,10 @@ class Home extends Component
 
             }
 
+            Mail::to($sellOrder->paymentEmail)->send(new SellOrderReceived());
+
             DB::commit();
+
 
             return redirect()->route('home');
 
