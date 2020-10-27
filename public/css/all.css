@@ -601,6 +601,61 @@ input {
     color: #444444 !important;
 }
 
+.sellerList ul {
+    min-width: auto;
+}
+
+.sellerTotalInfo .text-gray-700 {
+    color: #374151 !important;
+}
+
+.sellerList ul li {
+    width: 100%;
+    border-bottom: 1px solid #d8d8d8;
+    display: flex;
+    font-size: 14px;
+    line-height: 24px;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    min-width: inherit;
+}
+
+.sellerList ul li:last-child {
+    border: 0px;
+}
+
+.sellerList ul li span.deviceName {}
+
+.sellerList ul li span.devicePrice {
+    font-weight: bold;
+}
+
+.card span.totalPrice {
+    display: inline-block;
+    width: 100%;
+    font-size: 80px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.error {
+    font-size: 14px;
+    color: #f00;
+    width: 100%;
+    background: #fff;
+    padding: 2.5px 15px;
+    display: inline-block;
+    text-align: left;
+    border-radius: 4px;
+}
+
+.sellerInfo input:focus {
+    border-color: #e5e7eb !important;
+    box-shadow: none !important;
+    outline: none;
+}
+
 @media (max-width:1024px) {
     .mainHeading {
         font-size: 20px;

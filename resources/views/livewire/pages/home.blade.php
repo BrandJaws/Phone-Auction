@@ -251,7 +251,7 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="last-name">
                                         Last Name
                                     </label>
-                                    <input wire:model="lastName" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="last-name" type="text" placeholder="Doe">
+                                    <input wire:model="lastName" class="appearance-none mb-3 block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="last-name" type="text" placeholder="Doe">
                                     @error('lastName') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="province">
                                         Province
                                     </label>
-                                    <input wire:model="province" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province">
+                                    <input wire:model="province" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province">
                                     @error('province') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -298,14 +298,14 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="postal-code">
                                         Postal Code
                                     </label>
-                                    <input wire:model="postalCode" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="postal-code" type="text" placeholder="Postal Code">
+                                    <input wire:model="postalCode" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="postal-code" type="text" placeholder="Postal Code">
                                     @error('postalCode') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="phone-number">
                                         Phone Number
                                     </label>
-                                    <input wire:model="phone" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="phone-number" type="text" placeholder=" Phone Number">
+                                    <input wire:model="phone" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="phone-number" type="text" placeholder=" Phone Number">
                                     @error('phone') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -330,7 +330,7 @@
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight" name="paidCycle" type="radio" value="PAYPAL" wire:model="paymentMethod" {{ $paymentMethod == 'PAYPAL' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="PAYPAL" wire:model="paymentMethod" {{ $paymentMethod == 'PAYPAL' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white radioImgBox">
                                                         <img src="{{asset('assets/images/paypal.png')}}" alt />
                                                     </span>
@@ -340,7 +340,7 @@
                                             <div class="w-full md:w-1/3 px-3">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight" name="paidCycle" type="radio" value="E-TRANSFER" wire:model="paymentMethod" {{ $paymentMethod == 'E-TRANSFER' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="E-TRANSFER" wire:model="paymentMethod" {{ $paymentMethod == 'E-TRANSFER' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white radioImgBox">
                                                         <img src="{{asset('assets/images/interac.svg')}}" alt />
                                                     </span>
@@ -350,7 +350,7 @@
                                             <div class="w-full md:w-1/3 px-3">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight" name="paidCycle" type="radio" value="CHEQUE" wire:model="paymentMethod" {{ $paymentMethod == 'CHEQUE' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="CHEQUE" wire:model="paymentMethod" {{ $paymentMethod == 'CHEQUE' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white">
                                                         Cheque
                                                     </span>
@@ -390,21 +390,48 @@
                         <div class="tabBody  p-6 relative col-span-9 bg-transparent bottomSidebar">
                             <div class="tabContent">
 
-                                <div class="tabDescription flex">
-
-                                    <div class="tabRightBox border-l-0">
-                                        <div class="price">
-                                            <span class="currency">$</span>
-                                            <span class="amount">{{ $netTotalWhole }}</span>
-                                            <span class="decimalPoint">.{{ $netTotalDecimal }}</span>
-                                        </div>
-                                        {{-- <div class="info">
-                                            <div class="promoBox">
-                                                <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                <div class="tabDescription">
+                                <div  class="sellerTotalInfo">
+                                    <div class="">
+                                        <div class="card  mb-4">
+                                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Total</span>
+                                            <div class="tabRightBox border-l-0">
+                                                <div class="price">
+                                                    <span class="currency">$</span>
+                                                    <span class="amount">{{ $netTotalWhole }}</span>
+                                                    <span class="decimalPoint">.{{ $netTotalDecimal }}</span>
+                                                </div>
+                                                {{-- <div class="info">
+                                                    <div class="promoBox">
+                                                        <input type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                                    </div>
+                                                    <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
+                                                </div> --}}
                                             </div>
-                                            <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
-                                        </div> --}}
+                                        </div>
+                                        <div class="sellerList">
+                                            <ul>
+                                                <li>
+                                                    <span class="deviceName">
+                                                        Galaxy S10+ 512GB/1TB / Rogers /<br> <span class="deviceCondition"> Like New </span>
+                                                    </span>
+                                                    <span class="devicePrice">
+                                                        $790.00
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="deviceName">
+                                                        Galaxy S8+ 512GB/1TB / Rogers /<br> <span class="deviceCondition"> Like New </span>
+                                                    </span>
+                                                    <span class="devicePrice">
+                                                        $610.00
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                </div>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="headerBtn">
         <a class="text-white font-bold py-2 px-4 rounded btnAdminTheme"
-        href="{{ route('dashboard.devices.models.edit', ["device_id" => $device->id, "device_model_id" => 'new']) }}">Add New Device</a>
+        href="{{ route('dashboard.devices.models.edit', ["device_id" => $device->id, "device_model_id" => 'new']) }}">Add New Model</a>
     </x-slot>
 
 
