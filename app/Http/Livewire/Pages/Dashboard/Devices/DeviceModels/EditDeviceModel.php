@@ -138,7 +138,7 @@ class EditDeviceModel extends Component
                 $existingImages = Image::where("imageable_type", DeviceModel::class)
                     ->where("imageable_id", $deviceModel->id)
                     ->get();
-                $imageName = Carbon::now()->toDateTimeString() . '.' . $this->image->extension();
+                $imageName = Carbon::now()->getTimestamp() . '.' . $this->image->extension();
                 $imageUrl = 'storage/uploads/device-models/' . $imageName;
                 $this->image->storeAs('public/uploads/device-models/', $imageName);
                 $image = new Image();

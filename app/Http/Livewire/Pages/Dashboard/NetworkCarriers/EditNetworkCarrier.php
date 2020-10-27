@@ -86,7 +86,7 @@ class EditNetworkCarrier extends Component
                 $existingImages = Image::where("imageable_type", NetworkCarrier::class)
                     ->where("imageable_id", $networkCarrier->id)
                     ->get();
-                $imageName = Carbon::now()->toDateTimeString() . '.' . $this->image->extension();
+                $imageName = Carbon::now()->getTimestamp() . '.' . $this->image->extension();
                 $imageUrl = 'storage/uploads/network-carriers/' . $imageName;
                 $this->image->storeAs('public/uploads/network-carriers/', $imageName);
                 $image = new Image();
