@@ -16,7 +16,7 @@
                 <th class="px-4 py-2 w-4/12 text-right">Action</th>
                 @foreach ($sellOrders as $sellOrder)
                 <tr>
-                    <td class="border px-4 py-2">{{ $sellOrder->name }} </td>
+                    <td class="border px-4 py-2">{{ $sellOrder->firstName.' '.$sellOrder->lastName }} </td>
                     <td class="border px-4 py-2">{{ $sellOrder->email }} </td>
                     <td class="border px-4 py-2 text-right">
                         <a class="text-sm bg-white btnSmall hover:bg-white-700 text-black border border-gray-400 font-bold py-2 rounded" href="{{route('dashboard.sell-orders.view', $sellOrder->id)}}"> View </a>
