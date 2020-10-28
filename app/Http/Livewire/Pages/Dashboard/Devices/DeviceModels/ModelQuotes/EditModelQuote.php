@@ -60,6 +60,8 @@ class EditModelQuote extends Component
                 $this->network_carrier_id = $modelQuote->network_carrier_id;
                 $this->quote_price = $modelQuote->quote_price;
             }
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
@@ -122,6 +124,8 @@ class EditModelQuote extends Component
             $modelQuote->save();
 
             return redirect()->route('dashboard.devices.models.quotes', ["device_id" => $device->id, "device_model_id" => $deviceModel->id]);
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch(\Illuminate\Validation\ValidationException $e){
             throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {

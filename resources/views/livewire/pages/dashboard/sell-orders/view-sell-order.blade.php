@@ -115,27 +115,21 @@
                             <div class="card">
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Total</span>
                                 <span class="totalPrice">
-                                    $1400
+                                    ${{ $sellOrder->netTotal }}
                                 </span>
                             </div>
                             <div class="sellerList">
                                 <ul>
-                                    <li>
-                                        <span class="deviceName">
-                                            Galaxy S10+ 512GB/1TB / Rogers /<br> <span class="deviceCondition"> Like New </span>
-                                        </span>
-                                        <span class="devicePrice">
-                                            $790.00
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="deviceName">
-                                            Galaxy S8+ 512GB/1TB / Rogers /<br> <span class="deviceCondition"> Like New </span>
-                                        </span>
-                                        <span class="devicePrice">
-                                            $610.00
-                                        </span>
-                                    </li>
+                                    @foreach($sellOrder->items as $index => $item)
+                                        <li wire:key="{{ $index }}">
+                                            <span class="deviceName" wire:key="title - {{ $index }}">
+                                                {{ $item->selectedDeviceModel->name }} / {{ $item->selectedNetworkCarrier->name }} / <br> <span class="deviceCondition">{{ $item->selectedQuote->device_state->condition }}</span>
+                                            </span>
+                                            <span class="devicePrice" wire:key="total - {{ $index }}">
+                                                ${{ $item->selectedQuote->quote_price }}
+                                            </span>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -146,7 +140,7 @@
 
 
 
-            
+
         </div>
     </div>
 

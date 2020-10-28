@@ -328,6 +328,7 @@ class Home extends Component
             foreach($this->sellOrderItems as $item){
                 $sellOrderItem = new SellOrderItem();
                 $sellOrderItem->fill([
+                    'sell_order_id' => $sellOrder->id,
                     'device_id' => $item["selectedDevice"]["id"],
                     'device_model_id' => $item["selectedDeviceModel"]["id"],
                     'network_carrier_id' => $item["selectedNetworkCarrier"]["id"],

@@ -77,6 +77,8 @@ class EditDeviceModel extends Component
                     }
                 }
             }
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
@@ -170,6 +172,8 @@ class EditDeviceModel extends Component
 
             return redirect()->route('dashboard.devices.models', $device->id);
 
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch(\Illuminate\Validation\ValidationException $e){
             throw new \Illuminate\Validation\ValidationException($e);
         } catch (\Exception $e) {

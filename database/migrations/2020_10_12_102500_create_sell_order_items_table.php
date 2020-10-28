@@ -15,6 +15,7 @@ class CreateSellOrderItemsTable extends Migration
     {
         Schema::create('sell_order_items', function (Blueprint $table) {
             $table->id();
+            $table->integer('sell_order_id');
             $table->integer('device_id');
             $table->integer('device_model_id');
             $table->integer('network_carrier_id');

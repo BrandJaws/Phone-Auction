@@ -13,7 +13,7 @@ class ViewSellOrder extends Component
     public $sell_order_id;
     // public $isNew;
     public $title;
-
+    public $sellOrder;
     // Form fields for binding
     public $model_quote_id;
     public $firstName;
@@ -34,28 +34,33 @@ class ViewSellOrder extends Component
             $this->title = "Sell Order";
             $this->device_id = null;
             if ($sell_order_id) {
-                $sellOrder = SellOrder::find($sell_order_id);
-                if (!$sellOrder) {
+                $this->sellOrder = SellOrder::where('id', $sell_order_id)
+                                            ->with('items.selectedDeviceModel', 'items.selectedNetworkCarrier', 'items.selectedQuote')
+                                            ->first();
+                if (!$this->sellOrder) {
                     abort(404);
                 }
-                $this->model_quote_id = $sellOrder->model_quote_id;
-                $this->firstName = $sellOrder->firstName;
-                $this->lastName = $sellOrder->lastName;
-                $this->email = $sellOrder->email;
-                $this->address = $sellOrder->address;
-                $this->city = $sellOrder->city;
-                $this->province = $sellOrder->province;
-                $this->postalCode = $sellOrder->postalCode;
-                $this->phone = $sellOrder->phone;
-                $this->onlyShippingLabel = $sellOrder->onlyShippingLabel;
-                $this->paymentMethod = $sellOrder->paymentMethod;
-                $this->paymentEmail = $sellOrder->paymentEmail;
+                $this->model_quote_id = $this->sellOrder->model_quote_id;
+                $this->firstName = $this->sellOrder->firstName;
+                $this->lastName = $this->sellOrder->lastName;
+                $this->email = $this->sellOrder->email;
+                $this->address = $this->sellOrder->address;
+                $this->city = $this->sellOrder->city;
+                $this->province = $this->sellOrder->province;
+                $this->postalCode = $this->sellOrder->postalCode;
+                $this->phone = $this->sellOrder->phone;
+                $this->onlyShippingLabel = $this->sellOrder->onlyShippingLabel;
+                $this->paymentMethod = $this->sellOrder->paymentMethod;
+                $this->paymentEmail = $this->sellOrder->paymentEmail;
 
                 $this->title = "Sell Order";
                 $this->sell_order_id = $sell_order_id;
             }
             $this->selectedOrderIndex = 0;
-        } catch (\Exception $e) {
+        } catch(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
+        }
+        catch (\Exception $e) {
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()

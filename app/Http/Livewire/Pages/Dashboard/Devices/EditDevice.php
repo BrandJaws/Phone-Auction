@@ -36,6 +36,8 @@ class EditDevice extends Component
                 $this->title = "Edit Device";
                 $this->device_id = $device_id;
             }
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
@@ -105,6 +107,8 @@ class EditDevice extends Component
             return redirect()->route('dashboard.devices');
         } catch(\Illuminate\Validation\ValidationException $e){
             throw new \Illuminate\Validation\ValidationException($e);
+        } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException($e);
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
                 'error' => $e->getMessage(),
