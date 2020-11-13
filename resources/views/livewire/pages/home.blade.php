@@ -205,7 +205,7 @@
                                         @endif
                                         <div class="info">
                                             <div class="promoBox">
-                                                <input wire:model="sellOrderItems.{{$selectedOrderIndex}}.promoCode" type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
+                                                <input wire:model.lazy="sellOrderItems.{{$selectedOrderIndex}}.promoCode" type="text" placeholder="Enter a promo code*" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white promoInput" autofocus />
                                             </div>
                                             <p>*We occasionally offer promo codes in our email blasts or <a href="#.">Facebook page</a></p>
                                         </div>
@@ -244,14 +244,14 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="first-name">
                                         First Name
                                     </label>
-                                    <input wire:model="firstName" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Jane" >
+                                    <input wire:model.lazy="firstName" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Jane" >
                                     @error('firstName') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="last-name">
                                         Last Name
                                     </label>
-                                    <input wire:model="lastName" class="appearance-none mb-3 block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="last-name" type="text" placeholder="Doe">
+                                    <input wire:model.lazy="lastName" class="appearance-none mb-3 block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="last-name" type="text" placeholder="Doe">
                                     @error('lastName') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
                                         <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="email">
                                             Email
                                         </label>
-                                        <input wire:model="email" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="email" type="email" placeholder="johndoe@gmail.com">
+                                        <input wire:model.lazy="email" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="email" type="email" placeholder="johndoe@gmail.com">
                                         @error('email') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                             </div>
@@ -271,7 +271,7 @@
                                         <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="street-address">
                                             Street Address
                                         </label>
-                                        <input wire:model="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="string" placeholder="johndoe@gmail.com">
+                                        <input wire:model.lazy="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="string" placeholder="johndoe@gmail.com">
                                         @error('address') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                             </div>
@@ -281,14 +281,14 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="city">
                                         City
                                     </label>
-                                    <input wire:model="city" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="city" type="text" placeholder="City">
+                                    <input wire:model.lazy="city" class="appearance-none block w-full bg-white-200 text-gray-700 border border-red-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="city" type="text" placeholder="City">
                                     @error('city') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="province">
                                         Province
                                     </label>
-                                    <input wire:model="province" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province">
+                                    <input wire:model.lazy="province" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="province" type="text" placeholder="Province">
                                     @error('province') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -298,21 +298,21 @@
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="postal-code">
                                         Postal Code
                                     </label>
-                                    <input wire:model="postalCode" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="postal-code" type="text" placeholder="Postal Code">
+                                    <input wire:model.lazy="postalCode" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="postal-code" type="text" placeholder="Postal Code">
                                     @error('postalCode') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="phone-number">
                                         Phone Number
                                     </label>
-                                    <input wire:model="phone" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="phone-number" type="text" placeholder=" Phone Number">
+                                    <input wire:model.lazy="phone" class="appearance-none block mb-3 w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="phone-number" type="text" placeholder=" Phone Number">
                                     @error('phone') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
                             <div class="md:flex md:items-center mb-6">
                                 <label class="md:w-3/3 block text-gray-500 font-bold">
-                                <input class="mr-2 leading-tight" type="radio" value="1" wire:model="onlyShippingLabel" {{ $onlyShippingLabel == '1' ? 'checked' : '' }} >
+                                <input class="mr-2 leading-tight" type="radio" value="1" wire:model.lazy="onlyShippingLabel" {{ $onlyShippingLabel == '1' ? 'checked' : '' }} >
                                 <span class="text-sm text-white">
                                 I only need the shipping label <br>
                                 <span class="text-sm font-normal">Check this box if you already have your own packing box or envelope, and just want us to email you a free shipping label. This will allow you to send us your device faster.</span>
@@ -330,7 +330,7 @@
                                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="PAYPAL" wire:model="paymentMethod" {{ $paymentMethod == 'PAYPAL' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="PAYPAL" wire:model.lazy="paymentMethod" {{ $paymentMethod == 'PAYPAL' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white radioImgBox">
                                                         <img src="{{asset('assets/images/paypal.png')}}" alt />
                                                     </span>
@@ -340,7 +340,7 @@
                                             <div class="w-full md:w-1/3 px-3">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="E-TRANSFER" wire:model="paymentMethod" {{ $paymentMethod == 'E-TRANSFER' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="E-TRANSFER" wire:model.lazy="paymentMethod" {{ $paymentMethod == 'E-TRANSFER' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white radioImgBox">
                                                         <img src="{{asset('assets/images/interac.svg')}}" alt />
                                                     </span>
@@ -350,7 +350,7 @@
                                             <div class="w-full md:w-1/3 px-3">
                                                 <div class="md:flex md:items-center">
                                                     <label class="block text-gray-500 font-bold radioWithImg">
-                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="CHEQUE" wire:model="paymentMethod" {{ $paymentMethod == 'CHEQUE' ? 'checked' : '' }} >
+                                                    <input class="mr-2 leading-tight h-auto" name="paidCycle" type="radio" value="CHEQUE" wire:model.lazy="paymentMethod" {{ $paymentMethod == 'CHEQUE' ? 'checked' : '' }} >
                                                     <span class="text-sm text-white">
                                                         Cheque
                                                     </span>
@@ -364,7 +364,7 @@
 
                             <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
-                                        <input wire:model="paymentEmail" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="payment-email" type="email" placeholder=" Payment Email*">
+                                        <input wire:model.lazy="paymentEmail" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="payment-email" type="email" placeholder=" Payment Email*">
                                         @error('paymentEmail') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                             </div>

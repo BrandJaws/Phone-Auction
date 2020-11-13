@@ -25,7 +25,7 @@
 
                         <input id="name"
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            type="text" required autofocus autocomplete="name" wire:model="name" />
+                            type="text" required autofocus autocomplete="name" wire:model.lazy="name" />
                         @error('name') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
 
                     </div>
@@ -58,7 +58,7 @@
                             <input id="condition"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                                 type="text" required autofocus autocomplete="name"
-                                wire:model="quotes.{{ $index }}.condition" />
+                                wire:model.lazy="quotes.{{ $index }}.condition" />
                             @error('quotes.'.$index.'.condition') <span class="error  text-red-500 text-xs">{{ $message }}</span> @enderror
 
                         </div>
@@ -68,7 +68,7 @@
                             </label>
                             <input id="price"
                                 class="appearance-none block w-full imgUploader bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                type="number" wire:model="quotes.{{ $index }}.quote_price" />
+                                type="number" wire:model.lazy="quotes.{{ $index }}.quote_price" />
                             @error('quotes.'.$index.'.quote_price') <span class="error  text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>

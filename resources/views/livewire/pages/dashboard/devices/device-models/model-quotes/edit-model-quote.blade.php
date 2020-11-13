@@ -24,7 +24,7 @@
                         </label>
                         <select
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            name="deviceState" wire:model="device_state_id">
+                            name="deviceState" wire:model.lazy="device_state_id">
                                 <option value="">Select a device state</option>
                                 @foreach ($deviceStates as $deviceState)
                                     <option value="{{ $deviceState->id }}" >{{ $deviceState->condition }}</option>
@@ -38,7 +38,7 @@
                         </label>
                         <select
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                        name="networkCarrier" wire:model="network_carrier_id">
+                        name="networkCarrier" wire:model.lazy="network_carrier_id">
                             <option value="0">Select a network carrier</option>
                             @foreach ($networkCarriers as $networkCarrier)
                                 <option value="{{ $networkCarrier->id }}" >{{ $networkCarrier->name }}</option>
@@ -50,7 +50,7 @@
 
                 <div class="mt-4">
                     <label for="quote_price" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >{{ __('Quote Price') }}</label>
-                    <input id="quote_price" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" wire:model="quote_price"/>
+                    <input id="quote_price" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="number" wire:model.lazy="quote_price"/>
                     @error('quote_price') <span class="error error text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 

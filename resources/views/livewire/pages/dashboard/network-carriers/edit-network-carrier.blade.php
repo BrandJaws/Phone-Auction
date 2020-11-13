@@ -18,7 +18,7 @@
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div  class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >{{ __('Name') }}</label>
-                        <input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" required autofocus autocomplete="name" wire:model="name"/>
+                        <input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" required autofocus autocomplete="name" wire:model.lazy="name"/>
                         @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
 

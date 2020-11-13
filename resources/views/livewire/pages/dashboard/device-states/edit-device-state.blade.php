@@ -18,7 +18,7 @@
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div  class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label for="condition" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >{{ __('Condition') }}</label>
-                        <input id="condition" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" required autofocus autocomplete="condition" wire:model="condition"/>
+                        <input id="condition" class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" required autofocus autocomplete="condition" wire:model.lazy="condition"/>
                         @error('condition') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -28,7 +28,7 @@
 
                     @foreach ($features as $featureIndex => $feature)
                         <div class="mt-2 inline-block w-full">
-                            <input id="features.{{$featureIndex}}" class="float-left withBtn appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" wire:model="features.{{$featureIndex}}"/>
+                            <input id="features.{{$featureIndex}}" class="float-left withBtn appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" wire:model.lazy="features.{{$featureIndex}}"/>
                             <button
                             class="float-right bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                             wire:click.prevent="removeFeature({{$featureIndex}})">-</button>
