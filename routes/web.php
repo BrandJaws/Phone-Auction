@@ -31,7 +31,9 @@ Route::get('/', Home::class)->name('home');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
 Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/', Dashboard::class);
+    Route::get('/', function(){
+        return redirect()->route('dashboard.devices');
+    });
 
     Route::prefix('devices')->name('.devices')->group(function () {
         Route::get('/', Devices::class);
