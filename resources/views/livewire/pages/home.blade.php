@@ -18,22 +18,22 @@
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto  homeHeaderNav">
                 <div class="text-sm lg:flex-grow flex items-center justify-end">
-                    <a href="http://mobijacks.com/about-us/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/about-us/" class="block mt-4 lg:inline-block lg:mt-0">
                         About Us
                     </a>
-                    <a href="http://mobijacks.com/mobile-phone-repair/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/mobile-phone-repair/" class="block mt-4 lg:inline-block lg:mt-0">
                         Repair
                     </a>
-                    <a href="http://mobijacks.com/buy-a-phone/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/buy-a-new-phone/" class="block mt-4 lg:inline-block lg:mt-0">
                         Phones
                     </a>
-                    <a href="http://mobijacks.com/news/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/news/" class="block mt-4 lg:inline-block lg:mt-0">
                         News
                     </a>
-                    <a href="http://mobijacks.com/warranty/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/warranty/" class="block mt-4 lg:inline-block lg:mt-0">
                         Warranty
                     </a>
-                    <a href="http://mobijacks.com/contact/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="http://mobi.retriodev.com/contact/" class="block mt-4 lg:inline-block lg:mt-0">
                         Directions / Contact Us
                     </a>
                 </div>

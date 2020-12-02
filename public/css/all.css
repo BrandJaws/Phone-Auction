@@ -183,6 +183,7 @@ input {
 
 .homeHeaderLogo {
     width: 200px;
+    margin: 0 auto;
 }
 
 .homeHeaderBtn {
@@ -298,7 +299,7 @@ input {
 .carrierBox .img-fluid {
     display: inline-block;
     width: auto;
-    height: 100%;
+    height: auto;
 }
 
 .carrierBox .img-fluid img {
@@ -714,7 +715,9 @@ input {
     }
     .tabButtons a.tabBtn {
         font-size: 14px;
-        padding-left: 30px;
+        padding-left: 9px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     .tabBody ul {
         min-width: inherit;
@@ -750,4 +753,111 @@ input {
     .homeHeaderNav .justify-end {
         justify-content: center;
     }
+}
+
+/* Responsive Css start here */
+
+
+section#modelSelectionSection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0px;
+}
+section#deviceSelectionSection {
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section#networkSelectionSection {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrierBox .img-fluid {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+section#quoteSelectionSection {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+
+.tabDescription {
+    flex-wrap: inherit;
+}
+
+section#requestFormSection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width: 767px){
+  
+section#networkSelectionSection {
+    height: auto;
+    padding: 40px 0px;
+}
+.container {
+    padding: 0px 15px;
+}
+section#quoteSelectionSection {
+    height: auto;
+    padding: 50px 0px;
+}
+.tabButtons a.tabBtn {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 9px;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.text-teal-200 {
+    display: none !important;
+}
+section#deviceSelectionSection {
+    height: auto;
+    padding: 40px 0px;
+}
+.homeHeaderLogo {
+    width: 65%;
+    margin: 0 auto;
+}
+
+section#modelSelectionSection {
+    min-height: auto;
+    padding: 40px 0px;
+}
+section#networkSelectionSection {
+    height: auto;
+    padding: 40px 0px;
+}
+
+section#requestFormSection {
+    min-height: auto;
+}
 }
