@@ -9,6 +9,7 @@ class Dashboard extends Component
     public $title = "Dashboard";
     public function render()
     {
+        return redirect()->route('dashboard.devices');
         return view('livewire.pages.dashboard.dashboard');
     }
 }

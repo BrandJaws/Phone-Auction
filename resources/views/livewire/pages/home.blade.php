@@ -8,7 +8,9 @@
         <nav class="flex items-center justify-between flex-wrap bg-blue-theme px-6 py-3">
             <div class="homeHeaderLogo">
                 <span class="font-semibold text-xl tracking-tight">
-                    <img src="{{asset('assets/images/logo-white.png')}}" alt="">
+                    <a href="http://mobi.retriodev.com/" target="_blank">
+                        <img src="{{asset('assets/images/logo-white.png')}}" alt="">
+                    </a>
                 </span>
             </div>
             <div class="block lg:hidden md:hidden">
