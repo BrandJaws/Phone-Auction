@@ -24,6 +24,7 @@ class Home extends Component
     public $netTotal = 0;
     public $netTotalWhole = 0;
     public $netTotalDecimal = 0;
+    public $showSuccessModal = false;
 
     // Form binding fields
     public $model_quote_id = "";
@@ -343,8 +344,8 @@ class Home extends Component
 
             DB::commit();
 
-
-            return redirect()->route('home');
+            $this->showSuccessModal = true;
+            // return redirect()->route('home');
 
         }
         catch(\Illuminate\Validation\ValidationException $e){
