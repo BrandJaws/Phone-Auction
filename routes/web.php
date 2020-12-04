@@ -29,6 +29,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
 
+// To Test email template for a Sell Order
+// Route::get('/sell-order-email', function () {
+//     return new App\Mail\SellOrderReceived(16);
+// });
+
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
 Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', function(){

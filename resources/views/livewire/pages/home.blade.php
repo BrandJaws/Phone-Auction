@@ -1,5 +1,5 @@
 <div>
-    <div class="loaderWrap" wire:loading wire:target="selectDevice, selectDeviceModel, selectNetworkCarrier, selectQuote, addAnotherDevice, displayForm, removeSellOrder">
+    <div class="loaderWrap" wire:loading wire:target="selectDevice, selectDeviceModel, selectNetworkCarrier, selectQuote, addAnotherDevice, displayForm, removeSellOrder, save">
         <div class="loaderBox">
             <img src="{{asset('assets/images/loader.gif')}}">
         </div>

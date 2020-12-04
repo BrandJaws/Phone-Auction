@@ -340,7 +340,7 @@ class Home extends Component
 
             }
 
-            Mail::to($sellOrder->paymentEmail)->send(new SellOrderReceived());
+            Mail::to($sellOrder->paymentEmail)->send(new SellOrderReceived($sellOrder->id));
 
             DB::commit();
 
