@@ -23,7 +23,7 @@ class SellOrderReceived extends Mailable
     public function __construct($sell_order_id)
     {
         $this->sellOrder = \App\Models\SellOrder::where('id', $sell_order_id)
-                                                ->with('items.selectedDeviceModel', 'items.selectedNetworkCarrier', 'items.selectedQuote.device_state')
+                                                ->with('drop_location', 'items.selectedDeviceModel', 'items.selectedNetworkCarrier', 'items.selectedQuote.device_state')
                                                 ->first();
     }
 

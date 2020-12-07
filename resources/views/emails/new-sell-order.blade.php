@@ -82,26 +82,45 @@
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <table cellpadding="0px" cellspacing="0px"
-                        style="width: 100%;padding:10px 0px 20px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p style="color: #000; font-size: 14px; line-height: 20px;">
-                                        <b>Your name:</b> {{ $sellOrder->firstName.' '.$sellOrder->lastName }}
-                                        <br>
-                                        <b>Your address:</b> {{ $sellOrder->address }}
-                                        <br>
-                                        <b>Want to get paid via:</b> {{ ucfirst(strtolower($sellOrder->paymentMethod)) }}
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+            @if($sellOrder->drop_location)
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px 20px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px; line-height: 20px;">
+                                            <b>Your email:</b> {{ $sellOrder->paymentEmail }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                @else
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px 20px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px; line-height: 20px;">
+                                            <b>Your name:</b> {{ $sellOrder->firstName.' '.$sellOrder->lastName }}
+                                            <br>
+                                            <b>Your address:</b> {{ $sellOrder->address }}
+                                            <br>
+                                            <b>Want to get paid via:</b> {{ ucfirst(strtolower($sellOrder->paymentMethod)) }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            @endif
             <tr>
                 <td>
                     <table cellpadding="0px" cellspacing="0px" class="tableBorder"
@@ -150,68 +169,103 @@
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <table cellpadding="0px" cellspacing="0px"
-                        style="width: 100%;padding:10px 0px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p style="color: #000; font-size: 14px;">
-                                        You’ve selected “I only need the shipping label”. It’s the fastest way to send your device(s)!
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table cellpadding="0px" cellspacing="0px"
-                        style="width: 100%;padding:10px 0px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p style="color: #000; font-size: 14px;">Our team is working on preparing your shipping label and will email it to you within the next business hour (if it’s the weekend, please allow 24 hours).
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table cellpadding="0px" cellspacing="0px"
-                        style="width: 100%;padding:10px 0px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p style="color: #000; font-size: 14px;">If you still haven’t received it, please let us know by simply replying to this email or by calling us 1-888-464-6798.
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table cellpadding="0px" cellspacing="0px"
-                        style="width: 100%;padding:10px 0px;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p style="color: #000; font-size: 14px;">
-                                        <b>Once you receive it, simply follow the shipping instructions and send us your device(s).</b>
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+            @if($sellOrder->drop_location)
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            You’ve selected top drop your device at our <strong>{{ $sellOrder->drop_location->name }}</strong> store.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            Please bring this email to the store when you want to drop your device with us.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            @else
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            You’ve selected “I only need the shipping label”. It’s the fastest way to send your device(s)!
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">Our team is working on preparing your shipping label and will email it to you within the next business hour (if it’s the weekend, please allow 24 hours).
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">If you still haven’t received it, please let us know by simply replying to this email or by calling us 1-888-464-6798.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            <b>Once you receive it, simply follow the shipping instructions and send us your device(s).</b>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            @endif
             {{-- <tr>
                 <td>
                     <table cellpadding="0px" cellspacing="0px"

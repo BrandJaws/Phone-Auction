@@ -15,7 +15,6 @@ class CreateSellOrdersTable extends Migration
     {
         Schema::create('sell_orders', function (Blueprint $table) {
             $table->id();
-            // $table->integer('model_quote_id');
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email');

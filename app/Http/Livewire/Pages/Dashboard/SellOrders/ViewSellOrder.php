@@ -15,6 +15,7 @@ class ViewSellOrder extends Component
     public $title;
     public $sellOrder;
     // Form fields for binding
+    public $selfDropLocationName = "";
     public $model_quote_id;
     public $firstName;
     public $lastName;
@@ -35,11 +36,12 @@ class ViewSellOrder extends Component
             $this->device_id = null;
             if ($sell_order_id) {
                 $this->sellOrder = SellOrder::where('id', $sell_order_id)
-                                            ->with('items.selectedDeviceModel', 'items.selectedNetworkCarrier', 'items.selectedQuote')
+                                            ->with('drop_location', 'items.selectedDeviceModel', 'items.selectedNetworkCarrier', 'items.selectedQuote')
                                             ->first();
                 if (!$this->sellOrder) {
                     abort(404);
                 }
+                $this->selfDropLocationName = $this->sellOrder->drop_location ? $this->sellOrder->drop_location->name : "";
                 $this->model_quote_id = $this->sellOrder->model_quote_id;
                 $this->firstName = $this->sellOrder->firstName;
                 $this->lastName = $this->sellOrder->lastName;

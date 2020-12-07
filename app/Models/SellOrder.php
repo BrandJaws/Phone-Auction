@@ -11,6 +11,8 @@ class SellOrder extends Model
 
     protected $fillable = [
         // 'model_quote_id',
+        'selfDropToLocation',
+        'drop_location_id',
         'firstName',
         'lastName',
         'email',
@@ -28,5 +30,9 @@ class SellOrder extends Model
 
     public function items(){
         return $this->hasMany(SellOrderItem::class);
+    }
+
+    public function drop_location(){
+        return $this->belongsTo(DropLocation::class);
     }
 }

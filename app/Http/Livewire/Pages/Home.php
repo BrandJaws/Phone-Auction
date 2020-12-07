@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Mail\SellOrderReceived;
 use App\Models\Device;
 use App\Models\DeviceModel;
+use App\Models\DropLocation;
 use App\Models\NetworkCarrier;
 use App\Models\SellOrder;
 use App\Models\SellOrderItem;
@@ -20,6 +21,7 @@ class Home extends Component
 
     public $devices;
     public $networkCarriers;
+    public $dropLocations;
     public $formVisible = false;
     public $netTotal = 0;
     public $netTotalWhole = 0;
@@ -27,7 +29,8 @@ class Home extends Component
     public $showSuccessModal = false;
 
     // Form binding fields
-    public $model_quote_id = "";
+    public $selfDropToLocation = "1";
+    public $drop_location_id = "";
     public $firstName = "";
     public $lastName = "";
     public $email = "";
@@ -62,6 +65,7 @@ class Home extends Component
         try {
             $this->devices = Device::with('image')->get();
             $this->networkCarriers = NetworkCarrier::with('image')->get();
+            $this->dropLocations = DropLocation::all();
             $this->sellOrderItems[] = $this->getBlankSellOrderItem();
             $this->selectedOrderIndex = 0;
         } catch (\Exception $e) {
@@ -283,49 +287,60 @@ class Home extends Component
     {
         try {
             DB::beginTransaction();
-
-            $rules = [
-                'firstName' => 'required|string|max:255',
-                // 'model_quote_id'=> 'integer',
-                'firstName'=> 'required|string|max:255',
-                'lastName'=> 'required|string|max:255',
-                'email'=> 'required|email|max:255',
-                'address'=> 'required|string|max:255',
-                'city'=> 'required|string|max:255',
-                'province'=> 'required|string|max:255',
-                'postalCode'=> 'required|string|max:255',
-                'phone'=> 'required|string|max:255',
-                'onlyShippingLabel'=> 'required|boolean',
-                'paymentMethod'=> 'required|string|max:255',
-                'paymentEmail'=> 'required|email|max:255',
-                'promoCode'=> 'string|max:255',
-            ];
+            if($this->selfDropToLocation == '1'){
+                $rules = [
+                    'drop_location_id'=> 'required',
+                    'paymentEmail'=> 'required|email|max:255',
+                ];
+            }else{
+                $rules = [
+                    'firstName'=> 'required|string|max:255',
+                    'lastName'=> 'required|string|max:255',
+                    'email'=> 'required|email|max:255',
+                    'address'=> 'required|string|max:255',
+                    'city'=> 'required|string|max:255',
+                    'province'=> 'required|string|max:255',
+                    'postalCode'=> 'required|string|max:255',
+                    'phone'=> 'required|string|max:255',
+                    'onlyShippingLabel'=> 'required|boolean',
+                    'paymentMethod'=> 'required|string|max:255',
+                    'paymentEmail'=> 'required|email|max:255',
+                    'promoCode'=> 'string|max:255',
+                ];
+            }
 
             $this->validate($rules);
-
             // Create new instance if not found one
             $sellOrder = new SellOrder();
-
-            $sellOrder->fill([
-                'firstName' => $this->firstName,
-                // 'model_quote_id'=> $this->model_quote_id,
-                'firstName'=>  $this->firstName,
-                'lastName'=> $this->lastName,
-                'email'=> $this->email,
-                'address'=> $this->address,
-                'city'=> $this->city,
-                'province'=> $this->province,
-                'postalCode'=> $this->postalCode,
-                'phone'=> $this->phone,
-                'onlyShippingLabel'=> $this->onlyShippingLabel,
-                'paymentMethod'=> $this->paymentMethod,
-                'paymentEmail'=> $this->paymentEmail,
-                'promoCode'=>  $this->promoCode,
-                'netTotal' =>  $this->netTotal,
-            ]);
+            if($this->selfDropToLocation == '1'){
+                $sellOrder->fill([
+                    'selfDropToLocation' => 1,
+                    'drop_location_id'=>  $this->drop_location_id,
+                    'paymentEmail'=> $this->paymentEmail,
+                    'promoCode'=>  $this->promoCode ? $this->promoCode : null,
+                    'netTotal' =>  $this->netTotal,
+                ]);
+            }else{
+                $sellOrder->fill([
+                    'selfDropToLocation' => null,
+                    'drop_location_id'=>  null,
+                    'firstName'=>  $this->firstName,
+                    'lastName'=> $this->lastName,
+                    'email'=> $this->email,
+                    'address'=> $this->address,
+                    'city'=> $this->city,
+                    'province'=> $this->province,
+                    'postalCode'=> $this->postalCode,
+                    'phone'=> $this->phone,
+                    'onlyShippingLabel'=> $this->onlyShippingLabel,
+                    'paymentMethod'=> $this->paymentMethod,
+                    'paymentEmail'=> $this->paymentEmail,
+                    'promoCode'=>  $this->promoCode ? $this->promoCode : null,
+                    'netTotal' =>  $this->netTotal,
+                ]);
+            }
 
             $sellOrder->save();
-
             foreach($this->sellOrderItems as $item){
                 $sellOrderItem = new SellOrderItem();
                 $sellOrderItem->fill([
