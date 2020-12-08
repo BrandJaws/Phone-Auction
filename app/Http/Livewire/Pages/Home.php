@@ -319,6 +319,7 @@ class Home extends Component
                     'paymentEmail'=> $this->paymentEmail,
                     'promoCode'=>  $this->promoCode ? $this->promoCode : null,
                     'netTotal' =>  $this->netTotal,
+                    'status' => SellOrder::STATUSES_SELF_DROP["PROCESSING"]
                 ]);
             }else{
                 $sellOrder->fill([
@@ -337,6 +338,7 @@ class Home extends Component
                     'paymentEmail'=> $this->paymentEmail,
                     'promoCode'=>  $this->promoCode ? $this->promoCode : null,
                     'netTotal' =>  $this->netTotal,
+                    'status' => SellOrder::STATUSES_MAIL["PROCESSING"]
                 ]);
             }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Pages\Dashboard\SellOrders;
 
 use App\Models\SellOrder;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,6 +15,7 @@ class ViewSellOrder extends Component
     // public $isNew;
     public $title;
     public $sellOrder;
+    public $statuses;
     // Form fields for binding
     public $selfDropLocationName = "";
     public $model_quote_id;
@@ -28,6 +30,7 @@ class ViewSellOrder extends Component
     public $onlyShippingLabel;
     public $paymentMethod;
     public $paymentEmail;
+    public $status;
 
     public function mount($sell_order_id)
     {
@@ -54,9 +57,12 @@ class ViewSellOrder extends Component
                 $this->onlyShippingLabel = $this->sellOrder->onlyShippingLabel;
                 $this->paymentMethod = $this->sellOrder->paymentMethod;
                 $this->paymentEmail = $this->sellOrder->paymentEmail;
+                $this->status = $this->sellOrder->status;
 
                 $this->title = "Sell Order";
                 $this->sell_order_id = $sell_order_id;
+                $this->statuses = $this->sellOrder->selfDropToLocation ? SellOrder::STATUSES_SELF_DROP : SellOrder::STATUSES_MAIL;
+
             }
             $this->selectedOrderIndex = 0;
         } catch(\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e){
@@ -68,6 +74,36 @@ class ViewSellOrder extends Component
                 'line' => $e->getLine()
             ]);
             dd("Something Went Wrong");
+        }
+    }
+
+    public function save()
+    {
+        try {
+            DB::beginTransaction();
+            $rules = [
+                'status'=> 'required',
+            ];
+
+            $this->validate($rules);
+            $this->sellOrder->status = $this->status;
+            $this->sellOrder->save();
+
+            DB::commit();
+            return redirect()->route('dashboard.sell-orders');
+
+        }
+        catch(\Illuminate\Validation\ValidationException $e){
+            DB::rollBack();
+            throw new \Illuminate\Validation\ValidationException($e);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error(__METHOD__, [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine()
+            ]);
+            dd("Something Went Wrong", $e);
         }
     }
 

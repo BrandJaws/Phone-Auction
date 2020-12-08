@@ -33,6 +33,22 @@
                                         @error('paymentEmail') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="networkCarrier" >
+                                            {{ __('Status') }}
+                                        </label>
+                                        <select
+                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                        name="status" wire:model.lazy="status">
+                                            <option value="">Select a status</option>
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status }}" >{{ $status }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('status') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                             @else
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -111,9 +127,28 @@
                                         @error('paymentEmail') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full md:w-2/2 px-3 mb-6 md:mb-0">
+                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="networkCarrier" >
+                                            {{ __('Status') }}
+                                        </label>
+                                        <select
+                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                        name="status" wire:model.lazy="status">
+                                            <option value="">Select a status</option>
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status }}" >{{ $status }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('status') <span class="error text-red-500 text-xs">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
                             @endif
 
                             <div class="flex items-center justify-end mt-4">
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded" wire:click="save">
+                                    {{ __('Save') }}
+                                </button>
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     {{ __('Print') }}
                                 </button>

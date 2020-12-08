@@ -9,6 +9,22 @@ class SellOrder extends Model
 {
     use HasFactory;
 
+    //Status constants
+    const STATUSES_MAIL = [
+        "PROCESSING" => "Processing",
+        "SHIPPING_LABEL_SENT" => "Shipping Label Sent",
+        "PHONE_RECEIVED" => "Phone Received",
+        "PAYMENT_MADE" => "Payment Made",
+        "CLOSED" => "Closed",
+    ];
+
+    const STATUSES_SELF_DROP =[
+        "PROCESSING" => "Processing",
+        "PHONE_RECEIVED" => "Phone Received",
+        "CLOSED" => "Closed",
+    ];
+
+
     protected $fillable = [
         // 'model_quote_id',
         'selfDropToLocation',
@@ -25,7 +41,8 @@ class SellOrder extends Model
         'paymentMethod',
         'paymentEmail',
         'promoCode',
-        'netTotal'
+        'netTotal',
+        'status'
     ];
 
     public function items(){
