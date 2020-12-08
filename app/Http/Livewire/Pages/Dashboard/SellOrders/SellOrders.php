@@ -34,7 +34,7 @@ class SellOrders extends Component
 
     public function render()
     {
-        $sellOrders = SellOrder::paginate(config('global.records_per_page'));
+        $sellOrders = SellOrder::with('drop_location')->paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.sell-orders.sell-orders')->with(['sellOrders' => $sellOrders]);
     }
 }

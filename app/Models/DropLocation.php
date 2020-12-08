@@ -12,7 +12,8 @@ class DropLocation extends Model
     protected $fillable = [
         'name',
         'address',
-        'phone'
+        'phone',
+        'location_url'
     ];
 
 }

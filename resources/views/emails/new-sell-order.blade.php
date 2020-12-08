@@ -178,7 +178,7 @@
                                 <tr>
                                     <td>
                                         <p style="color: #000; font-size: 14px;">
-                                            You’ve selected top drop your device at our <strong>{{ $sellOrder->drop_location->name }}</strong> store.
+                                            You’ve selected to drop your device at our <strong>{{ $sellOrder->drop_location->name }}</strong> store.
                                         </p>
                                     </td>
                                 </tr>
@@ -194,7 +194,57 @@
                                 <tr>
                                     <td>
                                         <p style="color: #000; font-size: 14px;">
-                                            Please bring this email to the store when you want to drop your device with us.
+                                            Please bring this email with you when you come to our store to complete the transaction.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            Here is our store location and directions.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            <b>Address:</b> {{ $sellOrder->drop_location->address }}
+                                            <br>
+                                            <a href="{{ $sellOrder->drop_location->location_url }}" target="_blank"> Location </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px"
+                            style="width: 100%;padding:10px 0px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p style="color: #000; font-size: 14px;">
+                                            If you have any questions please contact us: <a href="tel:{{ $sellOrder->drop_location->phone }}">{{ $sellOrder->drop_location->phone }}</a>
                                         </p>
                                     </td>
                                 </tr>
