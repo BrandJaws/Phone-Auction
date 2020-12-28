@@ -217,10 +217,14 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <p><strong>The values are estimates only. Although our estimates are usually accurate, the final value will only be finalized after a physical inspection of your device has been completed by a Mobi Jack’s employee.</strong></p>
+                </div>
                 <div class="grid grid-flow-col">
                     <div class="buttons">
                         <a href="#." class="btnTheme" wire:click.prevent="addAnotherDevice" >
-                            Accept & add another device
+                            More than one device? Add here
+                            {{-- Accept & add another device --}}
                         </a>
                         <a href="#." class="btnTheme btnThemeFill" wire:click="displayForm">
                             Get Paid
@@ -244,18 +248,19 @@
                                     <label class="md:w-3/3 block text-gray-500 font-bold">
                                     <input name="selfDropToLocation" class="mr-2 leading-tight" type="radio" value="1" wire:model="selfDropToLocation" {{ $selfDropToLocation == '1' ? 'checked' : '' }} >
                                         <span class="text-sm text-white">
-                                            I will drop my device to a store location
+                                            Pick a store location
+                                            {{-- I will drop my device to a store location --}}
                                         </span>
                                     </label>
                                 </div>
-                                <div class="md:flex md:items-center mb-6">
+                                {{-- <div class="md:flex md:items-center mb-6">
                                     <label class="md:w-3/3 block text-gray-500 font-bold">
                                     <input name="selfDropToLocation" class="mr-2 leading-tight" type="radio" value="0" wire:model="selfDropToLocation" {{ $selfDropToLocation == '0' ? 'checked' : '' }} >
                                         <span class="text-sm text-white">
                                             I will send my device by mail
                                         </span>
                                     </label>
-                                </div>
+                                </div> --}}
                             </div>
                             <div>
                                 <form class="w-full pr-6" wire:submit.prevent="save" method="POST">
@@ -314,7 +319,7 @@
                                                         <label class="block uppercase tracking-wide text-white text-xs font-bold mb-2" for="street-address">
                                                             Street Address
                                                         </label>
-                                                        <input wire:model.lazy="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="string" placeholder="johndoe@gmail.com">
+                                                        <input wire:model.lazy="address" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="street-address" type="string" placeholder="123 Main St">
                                                         @error('address') <span class="error">{{ $message }}</span> @enderror
                                                     </div>
                                             </div>
@@ -355,7 +360,7 @@
 
                                             <div class="md:flex md:items-center mb-6">
                                                 <label class="md:w-3/3 block text-gray-500 font-bold">
-                                                <input class="mr-2 leading-tight" type="radio" value="1" wire:model.lazy="onlyShippingLabel" {{ $onlyShippingLabel == '1' ? 'checked' : '' }} >
+                                                <input class="mr-2 leading-tight" type="checkbox" value="1" wire:model.lazy="onlyShippingLabel" {{ $onlyShippingLabel == '1' ? 'checked' : '' }} >
                                                 <span class="text-sm text-white">
                                                 I only need the shipping label <br>
                                                 <span class="text-sm font-normal">Check this box if you already have your own packing box or envelope, and just want us to email you a free shipping label. This will allow you to send us your device faster.</span>
@@ -411,6 +416,9 @@
                                             <input wire:model.lazy="paymentEmail" class="appearance-none block w-full bg-white-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200" id="payment-email" type="email" placeholder=" Payment Email*">
                                             @error('paymentEmail') <span class="error">{{ $message }}</span> @enderror
                                         </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-white"><strong>The values are estimates only. Although our estimates are usually accurate, the final value will only be finalized after a physical inspection of your device has been completed by a Mobi Jack’s employee.</strong></p>
                                     </div>
                                     <div class="flex items-center">
                                         <div class="w-full text-right flex justify-between items-center">
