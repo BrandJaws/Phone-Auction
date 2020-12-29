@@ -31,10 +31,10 @@ class EditModelQuote extends Component
     public function mount($device_id, $device_model_id, $model_quote_id)
     {
         try {
-            $this->title = "New  Model Quote";
-            $this->device_id = null;
-            $this->device_model_id = null;
-            $this->model_quote_id = null;
+            $this->title = "New Model Quote";
+            $this->device_id = $device_id;
+            $this->device_model_id = $device_model_id;
+            $this->model_quote_id = 'new';
             $device = Device::find($device_id);
             if (!$device) {
                 abort(404);
@@ -93,7 +93,7 @@ class EditModelQuote extends Component
             }
 
             // Fetch existing record against the model quote if any
-            if ($this->model_quote_id) {
+            if ($this->model_quote_id !== 'new') {
                 $modelQuote = ModelQuote::find($this->model_quote_id);
                 if (!$modelQuote) {
                     abort(404);

@@ -33,8 +33,8 @@ class EditDeviceModel extends Component
     {
         try {
             $this->title = "New Device Model";
-            $this->device_id = null;
-            $this->device_model_id = null;
+            $this->device_id = $device_id;
+            $this->device_model_id = 'new';
             $device = Device::find($device_id);
             if (!$device) {
                 abort(404);
@@ -101,7 +101,7 @@ class EditDeviceModel extends Component
                 }
             }
             // Fetch existing record against the device model if any
-            if ($this->device_model_id) {
+            if ($this->device_model_id !== 'new') {
                 $deviceModel = DeviceModel::find($this->device_model_id);
                 if (!$deviceModel) {
                     abort(404);
@@ -115,7 +115,7 @@ class EditDeviceModel extends Component
             ];
 
             // Add image validation only if new record
-            if (!$this->device_model_id) {
+            if ($this->device_model_id === 'new') {
                 $rules['image'] = 'required|image|max:1024';
             } else if ($this->image) {
                 $rules['image'] = 'image|max:1024';

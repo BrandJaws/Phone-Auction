@@ -23,7 +23,7 @@ class EditDeviceState extends Component
         try {
 
             $this->title = "New Device State";
-            $this->device_state_id = null;
+            $this->device_state_id = 'new';
             if ($device_state_id !== 'new') {
                 $deviceState = DeviceState::find($device_state_id);
                 if (!$deviceState) {
@@ -79,7 +79,7 @@ class EditDeviceState extends Component
         try {
             $deviceState = null;
             // Fetch existing record against the device if any
-            if ($this->device_state_id) {
+            if ($this->device_state_id !== 'new') {
                 $deviceState = DeviceState::find($this->device_state_id);
                 if (!$deviceState) {
                     abort(404);

@@ -26,7 +26,7 @@ class EditNetworkCarrier extends Component
 
         try {
             $this->title = "New Network Carrier";
-            $this->network_carrier_id = null;
+            $this->network_carrier_id = 'new';
             if ($network_carrier_id !== 'new') {
                 $networkCarrier = NetworkCarrier::find($network_carrier_id);
                 if (!$networkCarrier) {
@@ -52,7 +52,7 @@ class EditNetworkCarrier extends Component
         try {
             $networkCarrier = null;
             // Fetch existing record against the network carrier if any
-            if ($this->network_carrier_id) {
+            if ($this->network_carrier_id !== 'new') {
                 $networkCarrier = NetworkCarrier::find($this->network_carrier_id);
                 if (!$networkCarrier) {
                     abort(404);
@@ -64,7 +64,7 @@ class EditNetworkCarrier extends Component
             ];
             // Add image validation only if new record
             // Add image validation only if new record
-            if (!$this->network_carrier_id) {
+            if ($this->network_carrier_id === 'new') {
                 $rules['image'] = 'required|image|max:1024';
             } else if ($this->image) {
                 $rules['image'] = 'image|max:1024';
