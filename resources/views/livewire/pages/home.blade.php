@@ -176,8 +176,10 @@
                     <div class="w-3/12">
                         <div class="tabButtons h-full bg-white">
                             @foreach($sellOrderItems[$selectedOrderIndex]["selectedDeviceModel"]["quotes"] as $quote)
-                                <a href="#." class="tabBtn {{ $sellOrderItems[$selectedOrderIndex]["selectedQuote"] && $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["id"] === $quote["id"] ? 'active' : '' }}" wire:click="selectQuote({{ $quote["id"] }})" >{{ $quote["device_state"]["condition"] }}</a>
-                            @endforeach
+                                @if($quote["device_state"])
+                                    <a href="#." class="tabBtn {{ $sellOrderItems[$selectedOrderIndex]["selectedQuote"] && $sellOrderItems[$selectedOrderIndex]["selectedQuote"]["id"] === $quote["id"] ? 'active' : '' }}" wire:click="selectQuote({{ $quote["id"] }})" >{{ $quote["device_state"]["condition"] }}</a>
+                                @endif
+                             @endforeach
                         </div>
                     </div>
                     <div class="w-9/12">
