@@ -872,3 +872,29 @@ section#requestFormSection {
         min-height: auto;
     }
 }
+
+#quoteSelectionSection .w-3/12 {
+    width: 100%;
+}
+#quoteSelectionSection .tabButtons {
+    display: flex;
+    justify-content: space-between;
+}
+#quoteSelectionSection .tabButtons a.tabBtn {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding: 0px 25px;
+}
+#quoteSelectionSection .tabBody .subtitleTop {
+    top: -130px;
+    right: 0;
+    margin: 0 auto;
+}
+#quoteSelectionSection .tabButtons a.tabBtn:last-child {
+    border-top-right-radius: 8px;
+}
+#quoteSelectionSection .w-9/12{
+width: 100%;
+margin-bottom: 20px;
+}
