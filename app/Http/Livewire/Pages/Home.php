@@ -150,6 +150,9 @@ class Home extends Component
 
         try {
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedQuote"] = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDeviceModel"]["quotes"])->where('id', $quoteId)->first();
+            if($this->sellOrderItems[$this->selectedOrderIndex]["completed"]){
+                $this->setNetTotal();
+            }
             $this->emit('scrollToSection', 'requestFormSection');
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
