@@ -424,7 +424,7 @@
                                     </div>
                                     <div class="flex items-center">
                                         <div class="w-full text-right flex justify-between items-center">
-                                        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
+                                        <button onclick="scrollToElement('addAnotherDevice')" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="button">
                                             Modify Order
                                         </button>
                                         <input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded btnTheme" type="submit" value="Submit" />
