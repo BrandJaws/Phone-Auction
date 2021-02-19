@@ -947,3 +947,79 @@ section#requestFormSection {
     border-top-right-radius: 8px;
     border-bottom-left-radius
 }
+
+.tabButtons a.tabBtn.active::before {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 15px;
+    height: 15px;
+    background: #2762a2;
+    transform: rotate(45deg);
+    z-index: 9;
+}
+
+.tabButtons a.tabBtn::before {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 15px;
+    height: 15px;
+    background: #d2d2d2;
+    transform: rotate(45deg);
+    z-index: 9;
+}
+
+.tabButtons a.tabBtn:last-child {
+    border-bottom-left-radius: 0px;
+}
+
+#quoteSelectionSection .tabButtons a.tabBtn {
+    border-right: 1px solid #f7f7f7;
+}
+
+.tabButtons a.tabBtn {
+    color: #ffffff;
+    background: #d2d2d2;
+    line-height: 80px;
+    border-bottom: 1px solid #d2d2d2;
+    position: relative;
+}
+
+.tabBody ul {
+    min-width: 802px;
+}
+
+.tabButtons a.tabBtn:hover::before {
+    background: #2762a2
+}
+
+.sellerList ul {
+    min-width: auto !important;
+}
+
+.mainTxtInfo {
+    text-align: center;
+}
+
+.mainTxtInfo p {
+    margin: 40px 0px;
+    font-size: 21px;
+    color: #333;
+}
+
+.mainTxtInfo a {
+    display: inline-block;
+    background: #b3cd34;
+    color: #fff !important;
+    padding: 15px 25px 14px;
+    border: 1px solid #b3cd34;
+    -webkit-border-radius: 50px;
+    border-radius: 5px;
+}

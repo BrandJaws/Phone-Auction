@@ -102,6 +102,10 @@
                     @endforeach
                     </div>
                 </div>
+                <div class="mainTxtInfo">
+                    <p>We do buy other brands, if your device isn’t listed please contact us to get an estimate</p>
+                    <a href="http://mobi.retriodev.com/contact/">Contect Us</a>
+                </div>
             </div>
         </section>
         <!--  -->
