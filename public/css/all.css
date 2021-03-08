@@ -679,6 +679,12 @@ input {
     height: auto;
 }
 
+.tabBody ul {
+    max-width: 802px !important;
+    min-width: 802px !important;
+}
+
+
 @media (max-width:1024px) {
     .mainHeading {
         font-size: 20px;
