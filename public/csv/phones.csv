@@ -1,0 +1,158 @@
+Device,Model,Great,Good,Broken Screen,Defective
+iPhone,iPhone 5 (all GB),5,5,0,0
+,iPhone 5c (all GB),5,5,0,0
+,iPhone 5s (all GB),10,5,0,0
+,iPhone 6 16GB,50,40,0,0
+,iPhone 6 32GB,55,45,0,0
+,iPhone 6 64/128GB,60,50,0,0
+,iPhone 6 Plus 16GB,80,70,0,0
+,iPhone 6 Plus 32GB,90,75,0,0
+,iPhone 6 Plus 64/128GB,100,80,0,0
+,iPhone 6s 16GB,60,50,0,0
+,iPhone 6s 32GB,75,60,0,0
+,iPhone 6s 64/128GB,80,70,0,0
+,iPhone 6s Plus 16GB,110,100,0,0
+,iPhone 6s Plus 32GB,120,110,0,0
+,iPhone 6s Plus 64/128GB,140,130,0,0
+,iPhone SE (1st gen) 16GB,40,30,0,0
+,iPhone SE (1st gen) 32GB,50,40,0,0
+,iPhone SE (1st gen) 64/128GB,60,50,0,0
+,iPhone SE (2nd gen) 64GB,300,280,100,0
+,iPhone SE (2nd gen) 128GB,340,305,125,0
+,iPhone SE (2nd gen) 256GB,360,355,175,0
+,iPhone 7 32GB,110,97,0,0
+,iPhone 7 128GB,140,115,0,0
+,iPhone 7 256GB,160,130,0,0
+,iPhone 7 Plus 32GB,175,155,0,0
+,iPhone 7 Plus 128GB,190,170,0,0
+,iPhone 7 Plus 256GB,195,175,0,0
+,iPhone 8 64GB,200,185,0,0
+,iPhone 8 256GB,240,220,25,0
+,iPhone 8 Plus 64GB,285,255,5,0
+,iPhone 8 Plus 256GB,300,265,35,0
+,iPhone X 64GB,310,275,0,0
+,iPhone X 256GB,345,320,0,0
+,iPhone XR 64GB,330,300,0,0
+,iPhone XR 128GB,350,310,40,0
+,iPhone XR 256GB,365,335,65,0
+,iPhone XS 64GB,360,330,0,0
+,iPhone XS 256GB,410,375,0,0
+,iPhone XS 512GB,425,400,20,0
+,iPhone XS Max 64GB,435,405,0,0
+,iPhone XS Max 256GB,465,430,0,0
+,iPhone XS Max 512GB,485,450,0,0
+,iPhone 11 64GB,500,465,225,0
+,iPhone 11 128GB,565,530,260,0
+,iPhone 11 256GB,590,560,290,0
+,iPhone 11 Pro 64GB,615,585,205,0
+,iPhone 11 Pro 256GB,720,680,300,0
+,iPhone 11 Pro 512GB,815,780,400,0
+,iPhone 11 Pro Max 64GB,715,670,210,0
+,iPhone 11 Pro Max 256GB,780,735,275,0
+,iPhone 11 Pro Max 512GB,850,770,310,0
+,iPhone 12 Mini 64GB,620,590,260,0
+,iPhone 12 Mini 128GB,670,640,310,0
+,iPhone 12 Mini 256GB,760,720,390,0
+,iPhone 12 64GB,700,630,250,0
+,iPhone 12 128GB,740,670,290,0
+,iPhone 12 256GB,850,770,390,0
+,iPhone 12 Pro 128GB,950,900,520,0
+,iPhone 12 Pro 256GB,980,950,570,0
+,iPhone 12 Pro 512GB,1000,980,600,0
+,iPhone 12 Pro Max 128GB,970,940,480,0
+,iPhone 12 Pro Max 256GB,980,950,490,0
+,iPhone 12 Pro Max 512GB,1000,980,520,0
+Samsung,Galaxy J3 (SM-J320W),15,10,0,0
+,Galaxy Core (G386W),10,10,0,0
+,Galaxy Grand Prime (G530),15,10,0,0
+,Galaxy A5 (A500),30,20,0,0
+,Galaxy A5 2017 (A520),65,55,0,0
+,Galaxy A8 (A530),90,75,0,0
+,Galaxy A10e -2019,50,35,0,0
+,Galaxy A20 32GB (2019),80,65,0,0
+,Galaxy A50 64GB (2019),110,90,0,0
+,Galaxy A70 128GB (2019),140,120,0,0
+,Galaxy A21 ( 2020 ),100,70,0,0
+,Galaxy A51 ( 2020 ),140,120,0,0
+,Galaxy A71 ( 2020 ),210,180,0,0
+,Galaxy Note 2 (i317),20,15,0,0
+,Galaxy Note 3 ( N900 ),35,25,0,0
+,Galaxy Note 4 ( N910 ),50,35,0,0
+,Galaxy Note 5 ( N920 ),85,70,0,0
+,Galaxy Note 8,210,180,0,0
+,Galaxy Note 9,285,250,0,0
+,Galaxy Note 10,400,375,10,0
+,Galaxy Note 10+ 256GB,495,460,70,0
+,Galaxy Note 10+ 512GB,505,470,60,0
+,Galaxy Note 20 128GB,615,580,210,0
+,Galaxy Note 20 Ultra,760,730,290,0
+,Galaxy S3 (i747),15,10,0,0
+,Galaxy S4 Mini (i257M),15,10,0,0
+,Galaxy S4 (i337),20,15,0,0
+,Galaxy S5,35,25,0,0
+,Galaxy S6 (G920),65,45,0,0
+,Galaxy S6 Edge (G925),70,50,0,0
+,Galaxy S6 Edge + (G928),85,70,0,0
+,Galaxy S7 (G930),85,65,0,0
+,Galaxy S7 Edge (G935),95,75,0,0
+,Galaxy S8 (G950),155,120,0,0
+,Galaxy S8+ (G955),165,130,0,0
+,Galaxy S9 (G960),200,165,0,0
+,Galaxy S9+ (G965),215,185,0,0
+,Galaxy S10e 128GB,290,250,10,0
+,Galaxy S10e 256GB,375,325,65,0
+,Galaxy S10 128GB,385,345,100,0
+,Galaxy S10 512GB,360,335,110,0
+,Galaxy S10+ 128GB,375,345,100,0
+,Galaxy S10+ 512GB/1TB,420,380,110,0
+,Galaxy S20 FE 5G (2020),410,390,170,0
+,Galaxy S20 5G,515,485,155,0
+,Galaxy S20+ 5G,595,570,190,0
+,Galaxy S20 Ultra 5G,680,640,230,0
+,Galaxy S21 5G,670,620,330,0
+,Galaxy S21+ 5G,815,765,455,0
+,Galaxy S21 Ultra 5G,1100,1000,570,0
+,Galaxy Z Flip -2020,685,650,0,0
+,Galaxy Z Fold 512GB (F900),850,800,0,0
+,Galaxy Z Fold 2 (2020),1400,1235,0,0
+Google,Google Pixel 32GB ,55,35,0,0
+,Google Pixel 128GB ,65,45,0,0
+,Google Pixel 32GB ,63,40,0,0
+,Google Pixel 128GB ,70,45,0,0
+,Google Pixel 2 64GB,105,80,0,0
+,Google Pixel 2 128GB,130,105,0,0
+,Google Pixel 2 XL 64GB,120,90,0,0
+,Google Pixel 2 XL 128GB,135,105,0,0
+,Google Pixel 3a 64GB,135,110,0,0
+,Google Pixel 3a XL 64GB,160,130,0,0
+,Google Pixel 3 64GB,135,110,0,0
+,Google Pixel 3 128GB,160,130,0,0
+,Google Pixel 3 XL 64GB,150,120,0,0
+,Google Pixel 3 XL 128GB,180,145,0,0
+,Google Pixel 4 64GB,250,220,0,0
+,Google Pixel 4 128GB,290,260,0,0
+,Google Pixel 4 XL 64GB,280,250,0,0
+,Google Pixel 4 XL 128GB,320,290,0,0
+,Google Pixel 4A 128GB,270,240,0,0
+,Google Pixel 4A 5G 128GB,350,320,0,0
+,Google Pixel 5 128GB,430,400,0,0
+LG,LG / X Power 3 (LMX510WM),40,30,0,0
+,LG K30 ,25,15,0,0
+,LG K61 -2020,150,120,0,0
+,LG Nexus 5 (D820),5,5,0,0
+,LG Nexus 5X (H790),50,40,0,0
+,LG Q6 (M703),40,30,0,0
+,LG Q60 ,125,105,0,0
+,LG Q70 ,135,115,0,0
+,LG V20 ,60,40,0,0
+,LG V30 (H933),105,85,0,0
+,LG G3 (D852),30,20,0,0
+,LG G4 (H812),35,25,0,0
+,LG G5 (H831),50,35,0,0
+,LG G6 (H873),75,60,0,0
+,LG G7 One,95,70,0,0
+,LG G7 ThinQ,105,80,0,0
+,LG G8 ThinQ,170,140,0,0
+,LG G8X Dual Screen,330,290,0,0
+,LG V60 ThinQ Dual Screen,450,400,0,0
+,LG Velvet 5G (2020),250,200,0,0
