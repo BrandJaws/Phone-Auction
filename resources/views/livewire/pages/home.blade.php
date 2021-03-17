@@ -106,7 +106,7 @@
                 </div>
                 <div class="mainTxtInfo">
                     <p>We do buy other brands, if your device isn’t listed please contact us to get an estimate</p>
-                    <a href="http://29dddfbb70.nxcli.net/contact-us/" target="_blank">Contect Us</a>
+                    <a href="http://29dddfbb70.nxcli.net/contact-us/" target="_blank">Contact Us</a>
                 </div>
             </div>
         </section>
