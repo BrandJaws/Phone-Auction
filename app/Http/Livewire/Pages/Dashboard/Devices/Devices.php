@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Pages\Dashboard\Devices;
 
 use App\Models\Device;
+use App\Models\DeviceModel;
+use App\Models\DeviceState;
+use App\Models\ModelQuote;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -43,10 +46,10 @@ class Devices extends Component
             dd("Something Went Wrong");
         }
     }
-
     public function render()
     {
         $devices = Device::paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.devices.devices')->with(['devices' => $devices]);
     }
+
 }
