@@ -92,7 +92,9 @@
                         <div class="w-full sm:w-6/12 md:w-5/12 lg:w-3/12">
                             <a href="#." class="deviceBox text-center"  wire:click.prevent="selectDevice({{$device->id}})">
                                 <div class="img-fluid">
+                                    @if($device->image)
                                     <img src="{{$device->image->imageUrl}}" alt="Device" />
+                                    @endif
                                 </div>
                                 <div class="imgCaption mt-3">
                                     <p>{{$device->name}}</p>
@@ -126,7 +128,9 @@
                             <div class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
                                 <a href="#." class="deviceBox text-center" >
                                     <div class="img-fluid">
-                                        <img src="{{$model["image"]["imageUrl"]}}" alt="Device" />
+                                        @if(Arr::get($model, 'image.imageUrl'))
+                                        <img src="{{Arr::get($model, 'image.imageUrl')}}" alt="Device" />
+                                        @endif
                                     </div>
                                     <div class="imgCaption mt-3">
                                         <p>{{ $model["name"] }}</p>
@@ -157,7 +161,9 @@
                         <div class="w-full sm:w-6/12 md:w-5/12 lg:w-3/12 networkCarrier" wire:click.prevent="selectNetworkCarrier({{ $carrier->id }})">
                         <a href="#." class="carrierBox text-center {{ $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"] && $sellOrderItems[$selectedOrderIndex]["selectedNetworkCarrier"]["id"] === $carrier->id ? 'active' : '' }}" >
                                 <div class="img-fluid">
+                                    @if($carrier->image->imageUrl)
                                     <img src="{{ $carrier->image->imageUrl}}" alt="Device" />
+                                    @endif
                                 </div>
                             </a>
                         </div>
