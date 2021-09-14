@@ -20,22 +20,22 @@
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto  homeHeaderNav">
                 <div class="text-sm lg:flex-grow flex items-center justify-end">
-                    <a href="http://mobi.retriodev.com/about-us/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/about-us/" class="block mt-4 lg:inline-block lg:mt-0">
                         About Us
                     </a>
-                    <a href="http://mobi.retriodev.com/mobile-phone-repair/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/mobile-phone-repair/" class="block mt-4 lg:inline-block lg:mt-0">
                         Repair
                     </a>
-                    <a href="http://mobi.retriodev.com/buy-a-new-phone/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/buy-a-new-phone/" class="block mt-4 lg:inline-block lg:mt-0">
                         Phones
                     </a>
-                    <a href="http://mobi.retriodev.com/news/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/news/" class="block mt-4 lg:inline-block lg:mt-0">
                         News
                     </a>
-                    <a href="http://mobi.retriodev.com/warranty/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/warranty/" class="block mt-4 lg:inline-block lg:mt-0">
                         Warranty
                     </a>
-                    <a href="http://mobi.retriodev.com/contact/" class="block mt-4 lg:inline-block lg:mt-0">
+                    <a href="https://mobijacks.com/contact/" class="block mt-4 lg:inline-block lg:mt-0">
                         Directions / Contact Us
                     </a>
                 </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="mainTxtInfo">
                     <p>We do buy other brands, if your device isn’t listed please contact us to get an estimate</p>
-                    <a href="http://29dddfbb70.nxcli.net/contact-us/" target="_blank">Contact Us</a>
+                    <a href="https://mobijacks.com/contact-us/" target="_blank">Contact Us</a>
                 </div>
             </div>
         </section>
