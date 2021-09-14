@@ -59,7 +59,7 @@ class DeviceModels extends Component
         if (!$device) {
             abort(404);
         }
-        $deviceModels = DeviceModel::where('device_id', $this->device_id)->paginate(config('global.records_per_page'));
+        $deviceModels = DeviceModel::where('device_id', $this->device_id)->orderBy('id', 'desc')->paginate(config('global.records_per_page'));
         return view('livewire.pages.dashboard.devices.device-models.device-models')->with([
             'device' => $device,
             'deviceModels' => $deviceModels
