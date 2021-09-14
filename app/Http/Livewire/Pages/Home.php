@@ -87,6 +87,7 @@ class Home extends Component
             $this->setCurrentSellOrderItemAsComplete(false);
 
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id', $deviceId)
+                ->orderBy('id', 'desc')
                 ->with('models.image')
                 ->first()->toArray();
             $this->emit('scrollToSection', 'modelSelectionSection');
