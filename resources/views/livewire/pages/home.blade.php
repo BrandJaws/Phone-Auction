@@ -123,10 +123,10 @@
                     </div>
                 </div>
                 <div class="gap-4">
-                    <div class="flex flex-wrap items-center justify-center">
+                    <ul class="flex flex-wrap items-center justify-center" drag-root="reOrderModels" id="model-section">
                         @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
-                            <div class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
-                                <a href="#." class="deviceBox text-center" >
+                            <li class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})" data-index="{{ $model["order"] }}" drag-item="{{ $model["id"] }}" wire:key="{{ $model["id"] }}" draggable="true">
+                                <button class="deviceBox text-center bg-transparent b-none">
                                     <div class="img-fluid">
                                         @if(Arr::get($model, 'image.imageUrl'))
                                         <img src="{{Arr::get($model, 'image.imageUrl')}}" alt="Device" />
@@ -135,10 +135,10 @@
                                     <div class="imgCaption mt-3">
                                         <p>{{ $model["name"] }}</p>
                                     </div>
-                                </a>
-                            </div>
+                                </button>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -561,6 +561,60 @@
     <script>
         window.livewire.on('scrollToSection',function(sectionId){
             scrollToElement(sectionId);
+            var draggableElem = {};
+            let dragStartElem = null;
+            let dragStartElement = {};
+            var dragRoot = document.querySelector('[drag-root]');
+            dragRoot.querySelectorAll('[drag-item]').forEach(el => {
+                el.addEventListener('dragstart', e => {
+                    console.log('Drag Start');
+                    e.target.setAttribute('dragging', true);
+                    let element = e.target.getAttribute('drag-item');
+                    let elementIndex = e.target.dataset.index;
+                    dragStartElem = elementIndex;
+                    dragStartElement = element;
+                });
+                el.addEventListener('drop', e => {
+                    console.log("Dropped");
+                    e.target.classList.remove('border-left');
+                    // get dragging element
+                    let draggingEle = dragRoot.querySelector('[dragging]');
+                    e.target.before(draggingEle);
+                    // refresh the livewire component
+                    let livewireComponent = Livewire.find(
+                        e.target.closest('[wire\\:id]').getAttribute('wire:id')
+                    );
+                    // collect reordered ids
+                    // let orderedIdsIndexes = Array.from(dragRoot.querySelectorAll('[data-index]')).map(itemEL => itemEL.getAttribute('data-index'));
+                    let element = e.target.getAttribute('drag-item');
+                    let elementIndex = e.target.dataset.index;
+
+                    draggableElem = {
+                        ...draggableElem,
+                        [dragStartElem]: element,
+                        [elementIndex]: dragStartElement
+                    }
+                    console.log(draggableElem);
+                    // let orderedIds = Array.from(dragRoot.querySelectorAll('[drag-item]')).map(itemEL => itemEL.getAttribute('drag-item'));
+                    // call method for updating reordered columns
+                    let method = dragRoot.getAttribute('drag-root');
+                    livewireComponent.call(method, draggableElem);
+                });
+                el.addEventListener('dragenter', e => {
+                    console.log('Drag Enter', e.target);
+                    e.target.classList.add('border-left');
+                    e.preventDefault();
+                });
+                el.addEventListener('dragover', e => e.preventDefault());
+                el.addEventListener('dragleave', e => {
+                    console.log('Drag Leave');
+                    e.target.classList.remove('border-left');
+                });
+                el.addEventListener('dragend', e => {
+                    console.log('Drag Dragging End');
+                    e.target.removeAttribute('dragging');
+                });
+            });
         })
 
         function scrollToElement(elementId){

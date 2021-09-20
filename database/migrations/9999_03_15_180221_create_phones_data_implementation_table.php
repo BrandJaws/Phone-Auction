@@ -35,6 +35,7 @@ class CreatePhonesDataImplementationTable extends Migration
                     $csv_phones_models_data = new DeviceModel();
                     $csv_phones_models_data->device_id = $this->phones->id;
                     $csv_phones_models_data->name = $singleLineData[1];
+                    $csv_phones_models_data->order = $csv_phones_models_data->count() + 1;
                     $csv_phones_models_data->save();
                     $this->deviceModel = $csv_phones_models_data;
                     $deviceState = DeviceState::all();

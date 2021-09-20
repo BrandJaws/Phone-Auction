@@ -87,9 +87,9 @@ class Home extends Component
             $this->setCurrentSellOrderItemAsComplete(false);
 
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id', $deviceId)
-                ->orderBy('id', 'desc')
-                ->with('models.image')
-                ->first()->toArray();
+                ->with(['models' => function ($query) {
+                    $query->with('image')->orderBy('order', 'asc');
+                }])->first()->toArray();
             $this->emit('scrollToSection', 'modelSelectionSection');
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
@@ -98,6 +98,17 @@ class Home extends Component
             ]);
             dd("Something Went Wrong");
         }
+    }
+
+    public function reOrderModels($orderedIds)
+    {
+        $deviceModels = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"]["models"]);
+        dd($deviceModels);
+//         foreach ($orderedIds as $index => $id) {
+//             $deviceModel = $deviceModels->where('id', (int) $id)->first();
+//             $deviceModel->order = $index;
+//             $deviceModel->save();
+//         }
     }
 
     public function selectDeviceModel($deviceModelId)

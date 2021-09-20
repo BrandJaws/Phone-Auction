@@ -62,6 +62,7 @@ class EditDeviceModel extends Component
                 }
                 $this->name = $deviceModel->name;
                 $this->title = "Edit Device Model";
+                $this->order = $deviceModel->order;
                 $this->device_model_id = $device_model_id;
 
                 // Populate Quotes for an existing model
@@ -127,11 +128,13 @@ class EditDeviceModel extends Component
             if (!$deviceModel) {
                 $deviceModel = new DeviceModel();
             }
-
             $deviceModel->fill([
                 "device_id" => $device->id,
-                "name" => $this->name
+                "name" => $this->name,
             ]);
+            if (!$deviceModel->order) {
+                $deviceModel->order = $deviceModel->count() + 1;
+            }
 
             $deviceModel->save();
 
@@ -181,7 +184,7 @@ class EditDeviceModel extends Component
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ]);
-            dd("Something Went Wrong");
+            dd("Something Went Wrong Mohsin");
 
         }
     }
