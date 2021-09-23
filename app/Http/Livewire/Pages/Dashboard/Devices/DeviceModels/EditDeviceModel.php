@@ -20,6 +20,7 @@ class EditDeviceModel extends Component
     public $device_model_id;
     // public $isNew;
     public $title;
+    public $order;
 
     // Form fields for binding
     public $name;
@@ -134,6 +135,8 @@ class EditDeviceModel extends Component
             ]);
             if (!$deviceModel->order) {
                 $deviceModel->order = $deviceModel->count() + 1;
+            } else {
+                $deviceModel->order = $this->order;
             }
 
             $deviceModel->save();

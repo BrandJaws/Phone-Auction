@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../dos-admin/.idea/dos-admin.iml" filepath="$PROJECT_DIR$/../dos-admin/.idea/dos-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/phoneseller.iml" filepath="$PROJECT_DIR$/.idea/phoneseller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../rental-web/.idea/rental-web.iml" filepath="$PROJECT_DIR$/../rental-web/.idea/rental-web.iml" />
     </modules>
   </component>
 </project>

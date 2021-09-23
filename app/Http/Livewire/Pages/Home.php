@@ -43,6 +43,7 @@ class Home extends Component
     public $paymentMethod = "PAYPAL";
     public $paymentEmail = "";
     public $promoCode = "";
+    public $selectedDeviceModels = "";
 
     protected $listeners = ['refreshComponent' => '$refresh'];
 
@@ -98,17 +99,6 @@ class Home extends Component
             ]);
             dd("Something Went Wrong");
         }
-    }
-
-    public function reOrderModels($orderedIds)
-    {
-        $deviceModels = collect($this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"]["models"]);
-        dd($deviceModels);
-//         foreach ($orderedIds as $index => $id) {
-//             $deviceModel = $deviceModels->where('id', (int) $id)->first();
-//             $deviceModel->order = $index;
-//             $deviceModel->save();
-//         }
     }
 
     public function selectDeviceModel($deviceModelId)

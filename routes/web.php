@@ -3,6 +3,7 @@
 use App\Http\Livewire\Pages\Dashboard\Dashboard;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\DeviceModels;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\EditDeviceModel;
+use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\DeviceModelsListing;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\ModelQuotes\EditModelQuote;
 use App\Http\Livewire\Pages\Dashboard\Devices\DeviceModels\ModelQuotes\ModelQuotes;
 use App\Http\Livewire\Pages\Dashboard\Devices\Devices;
@@ -46,6 +47,7 @@ Route::prefix('dashboard')->name('dashboard')->middleware(['auth:sanctum', 'veri
         Route::prefix('/{device_id}/models')->name('.models')->group(function () {
             Route::get('/', DeviceModels::class);
             Route::get('/{device_model_id}', EditDeviceModel::class)->name('.edit');
+            Route::get('/{device_model_detail}/details', DeviceModelsListing::class)->name('.listing');
             // Route::prefix('/{device_model_id}/quotes')->name('.quotes')->group(function () {
             //     Route::get('/', ModelQuotes::class);
             //     Route::get('/{model_quote_id}', EditModelQuote::class)->name('.edit');
