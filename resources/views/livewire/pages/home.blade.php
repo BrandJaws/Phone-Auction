@@ -123,10 +123,10 @@
                     </div>
                 </div>
                 <div class="gap-4">
-                    <div class="flex flex-wrap items-center justify-center">
+                    <ul class="flex flex-wrap items-center justify-center" id="model-section">
                         @foreach($sellOrderItems[$selectedOrderIndex]["selectedDevice"]["models"] as $model)
-                            <div class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
-                                <a href="#." class="deviceBox text-center" >
+                            <li class="w-full sm:w-6/12 md:w-3/12 lg:w-2/12 singleDeviceModel" wire:click.prevent="selectDeviceModel({{ $model["id"] }})">
+                                <button class="deviceBox text-center bg-transparent b-none">
                                     <div class="img-fluid">
                                         @if(Arr::get($model, 'image.imageUrl'))
                                         <img src="{{Arr::get($model, 'image.imageUrl')}}" alt="Device" />
@@ -135,10 +135,10 @@
                                     <div class="imgCaption mt-3">
                                         <p>{{ $model["name"] }}</p>
                                     </div>
-                                </a>
-                            </div>
+                                </button>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
             </div>
         </section>

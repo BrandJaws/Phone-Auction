@@ -43,6 +43,7 @@ class Home extends Component
     public $paymentMethod = "PAYPAL";
     public $paymentEmail = "";
     public $promoCode = "";
+    public $selectedDeviceModels = "";
 
     protected $listeners = ['refreshComponent' => '$refresh'];
 
@@ -87,9 +88,9 @@ class Home extends Component
             $this->setCurrentSellOrderItemAsComplete(false);
 
             $this->sellOrderItems[$this->selectedOrderIndex]["selectedDevice"] = Device::where('id', $deviceId)
-                ->orderBy('id', 'desc')
-                ->with('models.image')
-                ->first()->toArray();
+                ->with(['models' => function ($query) {
+                    $query->with('image')->orderBy('order', 'asc');
+                }])->first()->toArray();
             $this->emit('scrollToSection', 'modelSelectionSection');
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
