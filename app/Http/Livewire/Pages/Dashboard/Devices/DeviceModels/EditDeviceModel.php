@@ -27,6 +27,7 @@ class EditDeviceModel extends Component
     public $image;
 
     public $deviceStates;
+    public $deviceModels;
     public $quotes = [];
     public $quotesErrors = [];
 
@@ -37,6 +38,7 @@ class EditDeviceModel extends Component
             $this->device_id = $device_id;
             $this->device_model_id = 'new';
             $device = Device::find($device_id);
+            $this->deviceModels = DeviceModel::where('device_id', $device_id)->orderBy('order', 'asc')->get();
             if (!$device) {
                 abort(404);
             }
@@ -134,7 +136,13 @@ class EditDeviceModel extends Component
                 "name" => $this->name,
             ]);
             if (!$deviceModel->order) {
-                $deviceModel->order = $deviceModel->count() + 1;
+                foreach ($this->deviceModels as $index => $model) {
+                    if ($index === 0) {
+                        $deviceModel->order = $model->order;
+                    }
+                    $model->order += 1;
+                    $model->save();
+                }
             } else {
                 $deviceModel->order = $this->order;
             }

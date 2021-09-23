@@ -19,11 +19,11 @@ class DeviceModelsListing extends Component
             if ($device_model_detail === 'listing') {
                 $this->device_id = $device_id;
                 $this->device_model_detail = $device_model_detail;
-                $device = Device::find($device_id);
-                if (!$device) {
-                    abort(404);
-                }
-                $this->deviceModels = DeviceModel::where('device_id', $this->device_id)->orderBy('order', 'asc')->get();
+//                $device = Device::find($device_id);
+//                if (!$device) {
+//                    abort(404);
+//                }
+//                $this->deviceModels = DeviceModel::where('device_id', $this->device_id)->orderBy('order', 'asc')->get();
             }
         } catch (\Exception $e) {
             \Log::error(__METHOD__, [
